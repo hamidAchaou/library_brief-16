@@ -1,20 +1,14 @@
 <?php
-
-class loginContr extends login
-{
-
+class loginContr extends login {
   private $email;
   private $pass;
 
-  public function __construct($email, $pass)
-  {
-
+  public function __construct($email, $pass) {
     $this->email = $email;
     $this->pass = $pass;
   }
 
-  public function loginUser()
-  {
+  public function loginUser() {
     if ($this->emptyInput() == false) {
       // echo "invalid emptyinput"
       echo '<script>Swal.fire({
@@ -27,11 +21,8 @@ class loginContr extends login
       header("location: ../loginSignUp.php?erer=emptyinput");
       exit();
     }
-
-
     $this->getUser($this->email, $this->pass);
   }
-
 
   private function emptyInput()
   {

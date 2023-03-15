@@ -3,8 +3,8 @@ include "/xampp/htdocs/library_brief-16/classes/profile.classes.php";
 
   class ProfileInfoContr extends ProfileInfo {
 
-      public function fetchName($Nickname) {
-        $profileInfo = $this->getProfileInfo($Nickname);
+    public function fetchName($Nickname) {
+      $profileInfo = $this->getProfileInfo($Nickname);
 
       echo $profileInfo[0]["Name"];
     }

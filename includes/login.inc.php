@@ -14,8 +14,11 @@ if (isset($_POST['loginSubmit'])) {
     // running errore handlersand user signup
     $login->loginUser();
 
+// Verify whether the account is an administrator or a subscriber
+    $chackAdmin = new login();
+    $chackAdmin->checkAdmin($email);
+
     // going to back to front page
-    header('location: ../home.page.admin.php?error=none');
 }
 
 ?>

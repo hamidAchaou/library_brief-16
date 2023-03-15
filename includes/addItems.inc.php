@@ -12,7 +12,7 @@
         $Pages_Number  = $_POST['Pages_Number'];
 
         // instantiate AddItems class
-        include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
+        // include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
         include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
         include "/xampp/htdocs/library_brief-16/classes/addItems.contr.classes.php";
         $addItems = new addItemsContr($Title, $Author_Name, $Cover_Image, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number );

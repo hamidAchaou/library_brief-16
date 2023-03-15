@@ -5,7 +5,7 @@ class signup extends Dbh
   // cheack password and email is alridy in databases$$
   protected function setUser($Nickname, $Name, $Password, $Address, $email, $Phone, $CIN, $Occupation, $Birth_Date)
   {
-    $stmt = $this->connect()->prepare("INSERT INTO members (Nickname, Name, Password, Address, Email, Phone, CIN, Occupation, Birth_Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $this->connect()->prepare("INSERT INTO client (Nickname, Name, Password, Address, Email, Phone, CIN, Occupation, Birth_Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
     $hashedpass = password_hash($Password, PASSWORD_DEFAULT);
@@ -22,7 +22,7 @@ class signup extends Dbh
   // cheack password and email is alridy in databases
   protected function checkUser($name, $email)
   {
-    $stmt = $this->connect()->prepare('SELECT * FROM members WHERE Nickname = ? OR Email = ?;');
+    $stmt = $this->connect()->prepare('SELECT * FROM client WHERE Nickname = ? OR Email = ?;');
 
     if (!$stmt->execute(array($name, $email))) {
       $stmt = null;

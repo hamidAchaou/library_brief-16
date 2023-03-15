@@ -23,6 +23,21 @@ btnSignUp.addEventListener('click', function () {
 });
 
 
+
+
+let statusAV = document.querySelectorAll(".ikhan");
+
+if(statusAV.value === "Available") {
+    statusAV.classList.add("active");
+
+}
+
+
+
+
+
+
+
 (function ($) {
     "use strict";
 
