@@ -5,7 +5,7 @@ include "header.php";
 
 
 
-<body>
+<body class="bg-secondary">
 
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative logSin">

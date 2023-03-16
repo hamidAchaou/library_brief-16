@@ -19,9 +19,9 @@ include "header.php";
             </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="#aboutLibrary" class="nav-item nav-link">About</a>
+                    <a href="myReservation.php" class="nav-item nav-link">my Reservation</a>
                     <a href="items.php" class="nav-item nav-link">Items</a>
+                    <a href="#aboutLibrary" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
@@ -43,8 +43,9 @@ include "header.php";
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">with Book You</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Satisfy the thirst of knowledge
                             </h1>
-                            <a href="quote.html"
-                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation</a>
+                            <a href="items.php"
+                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -55,7 +56,7 @@ include "header.php";
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">with Book You</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Satisfy the thirst of knowledge
                             </h1>
-                            <a href="quote.html"
+                            <a href="items.php"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation</a>
                         </div>
                     </div>
@@ -135,14 +136,21 @@ include "header.php";
     </div>
     <!-- Facts Start -->
 
-        <!-- items Start -->
-        <div class=" g-5">
-            <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
-        <?php
+    <!-- Blog Start -->
+    <div class="wow fadeInUp" data-wow-delay="0.1s">
+        <div class="py-3 bg-secondary">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h1 class="mb-0">Welcome in your <br> library</h1>
+                <h5 class="fw-bold text-light text-uppercase pt-3">chose your Knowledge</h5>
+            </div>
+
+            <div class=" g-5">
+                <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
+            <?php
                 include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                 //   get data width class addItems.classes
                 $showItems = new AddItems();
-                $collectionData = $showItems->getCollectionInfo();
+                $collectionData = $showItems->getThreeItems();
 
                 // print_r($collectionData);
 
@@ -152,11 +160,11 @@ include "header.php";
             ?>
 
                 <!-- <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px""> -->
-                    <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
                             <img class="img-fluid" src="img/2.jpg" alt="">
-                            <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></a>
+                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
                         </div>
                         <div class="p-4">
                             <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
@@ -164,24 +172,71 @@ include "header.php";
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
                             </div>
                             <div  class="d-flex justify-content-center mb-3">
-                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">More detailds</button>
+                                <?php
+                                  if ($value["Status"] !== "Available") {
+                                    echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
+                                  } else {
+                                ?>
+                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
+                                <?php
+                                };
+                                ?>
                             </div>
                     </div>
                 </div>
+                
+                <!--========== start modal reservation =============-->
+                <div class="modal fade" id="reserv<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">reservation</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>reservation</h1>
+                            <p>are you sur reserv this?</p>
+                
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger"><a href="reserv.php?idcollection=<?php echo $value['Collection_Code'] ?>">reserv</a></button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!--========== end modal reservation =============-->
+
                 <?php
-                    endforeach;
+                  endforeach;
                 ?>
-    <!-- end items -->
+                </div>
+                <div class="w-100 h-25 d-flex align-items-center justify-content-center pt-5 mt-3">
+                <a href="items.php"
+                    class="btn btn-primary py-md-2 px-md-5 me-3 animated slideInLeft">Se All items
+                </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Start -->
 
 
     <!-- About Start -->
     <div class="container-fluid py-5 wow fadeInUp" id="aboutLibrary" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
+                            src="img/10.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
                         <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
-                        <h1 class="mb-0">The Best IT Solution With 10 Years of Experience</h1>
+                        <h1 class="mb-0">The Best Library With 10 Years of Experience</h1>
                     </div>
                     <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
                         amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
@@ -208,12 +263,6 @@ include "header.php";
                     </div>
                     <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request
                         A Quote</a>
-                </div>
-                <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
-                            src="img/about.jpg" style="object-fit: cover;">
-                    </div>
                 </div>
             </div>
         </div>

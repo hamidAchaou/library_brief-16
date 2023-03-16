@@ -95,8 +95,8 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                             </div>
                             <div  class="d-flex justify-content-center mb-3">
                                 <?php
-                                  if ($value["Status"] !== "available") {
-                                    echo "<button type='button' class='btn btn-danger w-75'>this Items is bokid up</button>";
+                                  if ($value["Status"] !== "Available") {
+                                    echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
                                   } else {
                                 ?>
                                 <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>

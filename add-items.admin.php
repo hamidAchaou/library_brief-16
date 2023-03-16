@@ -107,19 +107,27 @@ include "header.php";
                         <!-- Email input -->
                         <div class="form-outline mb-4 w-50">
                           <label class="form-label" for="form2Example1">Buy Date:</label>
-                          <input type="text" name="Buy_Date" class="form-control" placeholder="Enter Your Buy Date:" />
+                          <input type="date" name="Buy_Date" class="form-control" placeholder="Enter Your Buy Date:" />
                         </div>
                     </div>
                 
                     <div class="d-flex w-100 gap-3">
-                        <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example2">Status:</label>
-                          <input type="text" name="Status"  class="form-control" placeholder="Enter Your Status" />
-                        </div>
-                        <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example2">Type :</label>
-                          <input type="number" name="Type"  class="form-control" placeholder="Enter Your Type " />
-                        </div>
+                    <div for="Status" class="form-outline mb-4 w-50">
+                      Status <br>
+                      <select name="Status" class="h-50 w-100 rounded pr-4">
+                        <option value="Available" selected>Available</option>
+                        <option value="booked_up">booked_up</option>
+                      </select>
+                    </div>
+                    <div for="Type" class="form-outline mb-4 w-50">
+                      Type: <br>
+                      <select name="Type" class="h-50 w-100 rounded pr-4">
+                        <option value="Books" selected>Books</option>
+                        <option value="cd">cd</option>
+                        <option value="Novel">Novel</option>
+                        <option value="Magazine">Magazine</option>
+                      </select>
+                    </div>
                     </div>
 
                     <div class="form-outline mb-4 w-50">

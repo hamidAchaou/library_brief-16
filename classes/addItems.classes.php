@@ -39,6 +39,20 @@ class AddItems extends Dbh {
         exit();
     }
     $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    // $annoncesLength = $conn->query($page)->rowCount();
+
+    // $pagesNum = 0;
+  
+    // if (($annoncesLength % 6) == 0) {
+  
+    //   $pagesNum = $annoncesLength / 6;
+    // } else {
+    //   $pagesNum = ceil($annoncesLength / 6);
+    // }
+
+
     return $collectionData;
   }
 
@@ -63,7 +77,7 @@ class AddItems extends Dbh {
   }
 
 
-  // methode update columb status in table collection
+  // methode update column status in table collection
   public function updatestatus($Status, $Collection_Code) {
     $stmt = $this->connect()->prepare('UPDATE Collection SET Status = ? WHERE Collection_Code  = ?;');
     if (!$stmt->execute(array($Status, $Collection_Code))) {
@@ -74,7 +88,53 @@ class AddItems extends Dbh {
     $stmt = null;
   }
 
-}
+  // get three items for home page client
+  public function getThreeItems() {
+    $stmt = $this->connect()->prepare('SELECT * FROM collection ORDER BY RAND() LIMIT 3;');
+    if(!$stmt->execute()) {
+        $stmt = null;
+        header("location: ../index.php?erer=stmtfailed");
+        exit();
+    }
+    if ($stmt->rowCount() == 0) {
+        $stmt = null;
+        header("location: ../add-items.admin.php?erer=CollrctionNotFound");
+        exit();
+    }
+    $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $collectionData;
+  }
 
+    // INSERT data in table reservation 
+    public function insertReservation($Collection_Code , $Nickname) {
+      $stmt = $this->connect()->prepare("INSERT INTO reservation (Reservation_Expiration_Date, Collection_Code , Nickname) VALUES (?, ?, ?)");
+
+      $current_time = date('Y-m-d H:i:s'); // Get the current time in the format of "YYYY-MM-DD HH:MM:SS"
+      $Reservation_Expiration_Date = date('Y-m-d H:i:s', strtotime($current_time . ' +24 hours')); // Add 24 hours to the current time
+      if (!$stmt->execute(array($Reservation_Expiration_Date, $Collection_Code , $Nickname))) {
+        $stmt = null;
+        header("location: items.php?erer=stmtfailed");
+        exit();
+      }
+      $stmt = null;
+    }
+
+    // select Reservation_Expiration_Date in table reservation 
+    public function getExpriationDate($Nickname, $current_time,  $incremented_time) {
+      $stmt = $this->connect()->prepare('SELECT Reservation_Expiration_Date FROM reservation WHERE Nickname = ? AND Reservation_Expiration_Date BETWEEN ? AND ?;');
+      if(!$stmt->execute([$Nickname, $current_time, $incremented_time])) {
+          $stmt = null;
+          header("location: items.php?erer=stmtfailed");
+          exit();
+      }
+      if ($stmt->rowCount() == 0) {
+          $stmt = null;
+          header("location: items.php?erer=Reservation_Expiration_DateNotFound");
+          exit();
+      }
+      $collectionData = $stmt->rowCount();
+      return $collectionData;
+    }
+}
 
 ?>

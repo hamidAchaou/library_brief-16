@@ -16,6 +16,21 @@
   Launch demo modal
 </button>
 
+<?php
+session_start();
+include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
+
+
+  $current_time = date('Y-m-d H:i:s'); // Get the current time in the format of "YYYY-MM-DD HH:MM:SS"
+  $incremented_time = date('Y-m-d H:i:s', strtotime($current_time . ' +24 hours')); // Add 24 hours to the current time
+  // echo $incremented_time; // Output the incremented time
+
+  
+$dataCollection = new AddItems();
+$idCollection = $dataCollection->getExpriationDate($_SESSION['nickName'], $current_time,  $incremented_time);
+echo $idCollection;
+?>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -26,6 +41,15 @@
       </div>
       <div class="modal-body">
         ...
+
+      <div class="w-100 bg-secondary d-flex" style="height: 100vh;">
+        <div class="bg-light" style="width: 50%; height: 300px;">
+          <h1>You have reserved 3 items</h1>
+          <button type="button" class="btn btn-secondary"><a href="items.php">OK</a></button>
+        </div>
+      </div>
+
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
