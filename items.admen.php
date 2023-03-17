@@ -21,9 +21,8 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
             </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.php" class="nav-item nav-link active">Home</a>
                     <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
-                    <a href="items.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">

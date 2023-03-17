@@ -88,7 +88,7 @@ class AddItems extends Dbh {
     $stmt = null;
   }
 
-  // get three items for home page client
+  // get three items random for home page client 
   public function getThreeItems() {
     $stmt = $this->connect()->prepare('SELECT * FROM collection ORDER BY RAND() LIMIT 3;');
     if(!$stmt->execute()) {

@@ -20,7 +20,7 @@ include "header.php";
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="items.admen.php" class="nav-item nav-link">Items</a>
-                    <a href="Reservation.admin.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
                     <a href="Exposed-items.admin.php" class="nav-item nav-link">Exposed items</a>
                     <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
                     <div class="nav-item dropdown">

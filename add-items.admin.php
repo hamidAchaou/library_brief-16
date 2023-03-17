@@ -65,7 +65,7 @@ include "header.php";
                 <div class="col-lg-8">
               <div class="card-body py-5 px-md-5">
                 
-                <form class=""  action="includes/addItems.inc.php" method="post">
+                <form class=""  action="includes/addItems.inc.php" method="post" enctype="multipart/form-data">
                     <h3>Sign Up</h3>
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
@@ -86,7 +86,7 @@ include "header.php";
                         <div class="form-outline mb-4 w-50">
                           <label class="form-label" for="form2Example1">Cover_Image:</label>
                           <!-- <input type="file" name="Cover_Image" class="form-control" placeholder="Enter Your Cover_Image" /> -->
-                          <input type="text" name="Cover_Image" class="form-control" placeholder="Enter Your Cover Image:" />
+                          <input type="file" name="Cover_Image" class="form-control" placeholder="Enter Your Cover Image:" />
 
                         </div>
       

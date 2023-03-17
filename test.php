@@ -28,7 +28,10 @@ include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
   
 $dataCollection = new AddItems();
 $idCollection = $dataCollection->getExpriationDate($_SESSION['nickName'], $current_time,  $incremented_time);
-echo $idCollection;
+// echo $idCollection;
+
+$dataCollection = date('Y-m-d H:i:s');
+echo $dataCollection;
 ?>
 
 <!-- Modal -->
@@ -41,6 +44,11 @@ echo $idCollection;
       </div>
       <div class="modal-body">
         ...
+
+        <?php
+       
+        ?>
+
 
       <div class="w-100 bg-secondary d-flex" style="height: 100vh;">
         <div class="bg-light" style="width: 50%; height: 300px;">

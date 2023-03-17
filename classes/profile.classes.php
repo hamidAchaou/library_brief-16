@@ -7,14 +7,12 @@ include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
         $stmt = $this->connect()->prepare('SELECT * FROM client WHERE Nickname = ?;');
 
         if(!$stmt->execute([$Nickname])) {
-
             $stmt = null;
             header("location: ../index.php?erer=stmtfailed");
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
-
             $stmt = null;
             header("location: ../index.php?erer=ProfileNotFound");
             exit();

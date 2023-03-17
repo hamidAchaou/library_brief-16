@@ -22,7 +22,7 @@ session_start();
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
                             <a href="profile.php" class="dropdown-item">profile</a>
-                            <a href="feature.html" class="dropdown-item">change password</a>
+                            <a href="items.php" class="dropdown-item">Items</a>
                             <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
@@ -48,9 +48,6 @@ session_start();
                   include_once "/xampp/htdocs/library_brief-16/classes/myreservation.classes.php";
                   $myreserve = new myReservation();
                   $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName']);
-                  echo '<pre>';
-                  print_r($dataMyreservation);
-                  echo '</pre>';
 
                   foreach ($dataMyreservation as $key => $value) :
                 ?>

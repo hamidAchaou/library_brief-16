@@ -23,7 +23,7 @@
       echo '
       <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-            <h1 class=" ">You have reserved 3 items</h1>
+            <h1 class=" ">You have ed 3 items</h1>
             <a href="items.php" class="btn btn-primary d-flex justify-content-center w-75 animated slideInLeft">OK</a>
         </div>
       </div>
@@ -37,7 +37,7 @@
         $dataCollection->updatestatus($status, $idCollection[0]['Collection_Code']);
   
         $dataCollection->insertReservation($idCollection[0]['Collection_Code'] , $_SESSION['nickName']);
-        header("location: items.php?erer=this_Itemis_Reserv");
+        header("location: ../items.php?erer=this_Itemis_Reserv");
       }
     }
     
