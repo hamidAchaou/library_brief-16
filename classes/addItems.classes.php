@@ -25,6 +25,17 @@ class AddItems extends Dbh {
     $stmt = null;
   }
 
+  // Delet collection items
+  public function DeleteItems($Collection_Code) {
+    $stmt = $this->connect()->prepare("DELETE FROM collection WHERE collection_code = ?;");
+    if (!$stmt->execute(array($Collection_Code))) {
+      $stmt = null;
+      header("location: addItems.classes.php?erer=stmtfailed");
+      exit();
+    }
+    $stmt = null;
+  }
+
   // select data collection in databases
   public function getCollectionInfo() {
     $stmt = $this->connect()->prepare('SELECT * FROM collection;');
@@ -127,11 +138,11 @@ class AddItems extends Dbh {
           header("location: items.php?erer=stmtfailed");
           exit();
       }
-      if ($stmt->rowCount() == 0) {
-          $stmt = null;
-          header("location: items.php?erer=Reservation_Expiration_DateNotFound");
-          exit();
-      }
+      // if ($stmt->rowCount() == 0) {
+      //     $stmt = null;
+      //     header("location: items.php?erer=Reservation_Expiration_DateNotFound");
+      //     exit();
+      // }
       $collectionData = $stmt->rowCount();
       return $collectionData;
     }

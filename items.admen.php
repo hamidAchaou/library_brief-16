@@ -11,7 +11,8 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
 
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-5 position-fixed" style="background-color: #061429; z-index: 999;">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+    <!--================ navbar start ================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -22,9 +23,12 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
+                    <a href="items.admen.php" class="nav-item nav-link text-primary">Items</a>
                     <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
+                    <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
+                        <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
                             <a href="profile.php" class="dropdown-item">profile</a>
                             <a href="feature.html" class="dropdown-item">change password</a>
@@ -34,6 +38,7 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                 </div>
             </div>
         </nav>
+    <!--================ navbar end ================== -->
 
     </div>
     <!-- Navbar & Carousel End -->
@@ -65,7 +70,7 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
 
                     <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px"">
                         <div class="blog-img position-relative overflow-hidden" style="height: 100px;">
-                            <img class="img-fluid w-100" src="<?php echo $value["Cover_Image"] ?>" alt="">
+                            <img class="img-fluid w-100" src="/uploads/<?php echo $value["Cover_Image"] ?>" alt="">
                             <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
                                 href=""><?php echo $value["Cover_Image"] ?></a>
                         </div>
@@ -85,14 +90,14 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small>
                             </div>
                             <div class="d-flex mb-3 justify-content-evenly">
-                                <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems">Delete</button>
+                                <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</button>
                                 <button type="button" class="btn btn-info"><a href="moreDetails.php?idcollection=<?php echo $value['Collection_Code'] ?>">edite</a></button>                            
                             </div>
                         </div>
                     </div>
 
                     <!--========== start modal Delete =============-->
-                    <div class="modal fade" id="deleteItems" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -106,7 +111,7 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger"><a href="deletCollection.php?idcollection=<?php echo $value['Collection_Code'] ?>">Delete</a></button>
+                            <button type="button" class="btn btn-danger"><a href="deletCollection.php?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</a></button>
                         </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
 
 <body>
     <!--================ navbar start ================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -18,8 +18,8 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                 <div class="navbar-nav ms-auto py-0">
                     <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
                     <a href="items.admen.php" class="nav-item nav-link">Items</a>
-                    <a href="confirme.rservation.php" class="nav-item nav-link text-primary">Reservation</a>
-                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
+                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.emprunt.php" class="nav-item nav-link text-primary">Emprunt</a>
                     <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
@@ -43,15 +43,18 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                 <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
             </div>
             <div class="d-flex justify-content-center mb-5">
-                <button class="btn btn-primary btn-Reservation">Confirme Reservation</button>
-                <button class="btn btn-Emprunt">Confirme Emprunt</button>
+                <button class="btn  btn-Reservation">Confirme Reservation</button>
+                <button class="btn btn-primary btn-Emprunt">Confirme Emprunt</button>
             </div>
             <!--========================-- start show Cards confirme reservation --=============================-->
-            <div class="row g-5 Reservation">
+            <div class="row g-5 Reservation active">
             
               <?php
                 $confirme = new confirmReservation();
                 $confirmeData = $confirme->getReservationInfo();
+                // echo "<pre>";
+                // print_r($confirmeData);
+                // echo "</pre>";
                 foreach ($confirmeData as $key => $value) :  
               ?>
 
@@ -65,7 +68,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                             </form> -->
                                 
                             <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                                <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme Reservation</button>
+                                <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme</button>
                             </form>
 
                         </div>
@@ -86,7 +89,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
             <!--========================-- end show Cards confirme reservation --=============================-->
 
           <!--========================-- start show Cards confirme emprunt --=============================-->
-          <div class="row g-5 Emprunt active">
+          <div class="row g-5 Emprunt">
             
             <?php
               $confirme = new confirmReservation();
@@ -107,7 +110,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                           </form> -->
                               
                           <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme</button>
+                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme Emprunt</button>
                           </form>
 
                       </div>

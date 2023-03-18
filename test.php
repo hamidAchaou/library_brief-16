@@ -18,7 +18,7 @@
 
 <?php
 session_start();
-include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
+// include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
 
 
   $current_time = date('Y-m-d H:i:s'); // Get the current time in the format of "YYYY-MM-DD HH:MM:SS"
@@ -26,12 +26,18 @@ include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
   // echo $incremented_time; // Output the incremented time
 
   
-$dataCollection = new AddItems();
-$idCollection = $dataCollection->getExpriationDate($_SESSION['nickName'], $current_time,  $incremented_time);
-// echo $idCollection;
+// $dataCollection = new AddItems();
+// $idCollection = $dataCollection->getExpriationDate($_SESSION['nickName'], $current_time,  $incremented_time);
+// // echo $idCollection;
 
-$dataCollection = date('Y-m-d H:i:s');
-echo $dataCollection;
+// $dataCollection = date('Y-m-d H:i:s');
+// // echo $dataCollection;
+
+$current_time = time(); // Get the current Unix timestamp
+$future_time = strtotime("+15 days", $current_time); // Add 15 days to the current timestamp
+
+$Borrowing_Return_Date = date("Y-m-d H:i:s", $future_time); // Format the future timestamp as a date and time string and output it
+echo $Borrowing_Return_Date;
 ?>
 
 <!-- Modal -->

@@ -1,4 +1,24 @@
 <?php
+
+
+
+
+// Show items as you search
+    if(isset($_POST['itemsSerch'])) {
+        $inpitemsSerch = $_POST['inpitemsSerch'];
+
+        include "/xampp/htdocs/library_brief-16/classes/serchInItems.classes.php";
+
+        $serch = new SerchInItems();
+        $serch->itemsSerch($inpitemsSerch, $inpitemsSerch);
+        print_r($serch);
+    } else {
+        // Show items
+        include_once "showCollection.php";
+    }
+
+
+
                 //   get data width class addItems.classes
                 $showItems = new AddItems();
                 $collectionData = $showItems->getCollectionInfo();
@@ -14,7 +34,7 @@
                 <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid" src="uploads<?php echo $value["cover_image"] ?>" alt="">
+                            <img class="img-fluid" src="/uploads/<?php echo $value["cover_image"] ?>" alt="">
                             <!-- <img class="img-fluid" src="/uploads/2.jpg" alt=""> -->
                             <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
                         </div>
@@ -29,7 +49,7 @@
                                     echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
                                   } else {
                                 ?>
-                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $Collection_Code?>">reservation</button>
+                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $Collection_Code ?>">reservation</button>
                                 <?php
                                 };
                                 ?>

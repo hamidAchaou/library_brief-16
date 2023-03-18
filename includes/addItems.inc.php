@@ -1,4 +1,6 @@
 <?php 
+include "../header.php";
+
     if (isset($_POST['AddItems'])) {
 
         $Title = $_POST['Title'];
@@ -28,7 +30,7 @@
                 if ($fileSize < 2000000) {
                     $fileNameNew = uniqid('', true).".".$fileActualExt;
                     $fileDestination = '../uploads'.$fileNameNew;
-                    move_uploaded_file($fileTmpName, $fileDestination);
+                    // move_uploaded_file($fileTmpName, $fileDestination);
 
                     // instantiate AddItems class
                     include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
@@ -39,11 +41,24 @@
                     // running errore handlersand user signup
                     $addItems->AddItems();
 
-                    header("location: ../home.page.admin.php?erer=none");
-
+                    echo '
+                    <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
+                      <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
+                          <h1 class=" ">this Items is Upload</h1>
+                          <a href="../add-items.admin.php" class="btn btn-primary d-flex justify-content-center w-75 animated slideInLeft">OK</a>
+                      </div>
+                    </div>
+                    ';
 
                 } else {
-                    echo 'your file is to big!';
+                    echo '
+                    <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
+                      <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
+                          <h1 class=" ">this file is  a big</h1>
+                          <a href="../add-items.admin.php" class="btn btn-danger d-flex justify-content-center w-75 animated slideInLeft">OK</a>
+                      </div>
+                    </div>
+                    ';
                 }
             } else {
                 echo 'there was an error uploading your file!';
@@ -66,5 +81,7 @@
         // $img_des = $uploads_dir.$name;
 
     }
+
+    include "../footer.php";
 
 ?>

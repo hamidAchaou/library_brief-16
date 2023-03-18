@@ -19,9 +19,10 @@ include "header.php";
             </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
+                    <a href="home.page.admin.php" class="nav-item nav-link text-primary">Home</a>
                     <a href="items.admen.php" class="nav-item nav-link">Items</a>
                     <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
-                    <a href="Exposed-items.admin.php" class="nav-item nav-link">Exposed items</a>
+                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
                     <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>

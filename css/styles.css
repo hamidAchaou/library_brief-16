@@ -162,6 +162,10 @@ h6,
     padding: 8%;
 }
 
+.selectNav {
+    border-bottom: #06A3DA 2px solid;
+}
+
 
 .logSin {
     background-color: #091E3E;

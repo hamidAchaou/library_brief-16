@@ -16,13 +16,13 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.php" class="nav-item nav-link">Home</a>
-                    <a href="#aboutLibrary" class="nav-item nav-link">About</a>
+                    <a href="myReservation.php" class="nav-item nav-link  text-info selectNav">My Reservation</a>
                     <a href="items.php" class="nav-item nav-link">Items</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
                             <a href="profile.php" class="dropdown-item">profile</a>
-                            <a href="items.php" class="dropdown-item">Items</a>
+                            <a href="feature.html" class="dropdown-item">change password</a>
                             <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>

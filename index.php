@@ -19,7 +19,8 @@ include "header.php";
             </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="myReservation.php" class="nav-item nav-link">my Reservation</a>
+                    <a href="index.php" class="nav-item nav-link text-info selectNav">Home</a>
+                    <a href="myReservation.php" class="nav-item nav-link">My Reservation</a>
                     <a href="items.php" class="nav-item nav-link">Items</a>
                     <a href="#aboutLibrary" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">

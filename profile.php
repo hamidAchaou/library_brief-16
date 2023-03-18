@@ -57,16 +57,48 @@ $profileInfo = new ProfileInfoContr();
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
+
+            <?php
+                // include "/xampp/htdocs/library_brief-16/classes/profile.classes.php";
+                $checkAdmin = new ProfileInfo();
+                $dataChechAdmin = $checkAdmin->AdminCheck($_SESSION['nickName'] );
+
+                // echo $checkAdmin;
+                // print_r($dataChechAdmin);
+                echo $dataChechAdmin[0]['Admin'];
+
+                if ($dataChechAdmin[0]['Admin'] === 0) {
+            ?> 
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto py-0">
+                            <a href="index.php" class="nav-item nav-link">Home</a>
+                            <a href="profile.php" class="nav-item nav-link text-info selectNav">Profile</a>
+                            <a href="myReservation.php" class="nav-item nav-link">My Reservation</a>
+                            <a href="items.php" class="nav-item nav-link">Items</a>
+                            <a href="#aboutLibrary" class="nav-item nav-link">About</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="profile.php" class="dropdown-item">profile</a>
+                                    <a href="feature.html" class="dropdown-item">change password</a>
+                                    <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                } else {
+            ?>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <!-- <a href="index.html" class="nav-item nav-link active">Home</a> -->
-                    <a href="index.php" class="nav-item nav-link">Home</a>
-                    <a href="#" class="nav-item nav-link">MyReservation</a>
+                    <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
+                    <a href="profile.php" class="nav-item nav-link text-info selectNav">Profile</a>
+                    <a href="items.admen.php" class="nav-item nav-link">Items</a>
+                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
+                    <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
+                        <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
                             <a href="profile.php" class="dropdown-item">profile</a>
                             <a href="feature.html" class="dropdown-item">change password</a>
@@ -75,6 +107,10 @@ $profileInfo = new ProfileInfoContr();
                     </div>
                 </div>
             </div>
+            <?php
+                }
+            ?>
+
         </nav>
 
       
@@ -104,7 +140,7 @@ $profileInfo = new ProfileInfoContr();
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
                 <!-- start form profile Info -->
-                <form class="form-Signup active" action="" method="post">
+                <form class="form-Signup " action="classes/profileinfo.upload.classes.php" method="post">
                     <div class="row g-3">
 
                         <label class="col-12 col-sm-6">
@@ -134,7 +170,7 @@ $profileInfo = new ProfileInfoContr();
                         </label>
                         <label class="col-6 col-sm-6">
                             CIN:
-                            <input type="number" name="cin" class="form-control bg-white border-0" value="<?php  $profileInfo->fetchCIN($_SESSION['nickName']); ?>" placeholder="CIN" style="height: 40px;">
+                            <input type="text" name="cin" class="form-control bg-white border-0" value="<?php  $profileInfo->fetchCIN($_SESSION['nickName']); ?>" placeholder="CIN" style="height: 40px;">
                         </label>
                         <label class="col-6 col-sm-6">
                             Date Of Birth:
@@ -144,13 +180,13 @@ $profileInfo = new ProfileInfoContr();
                             Occupation:
                             <input type="text" name="Occupation" class="form-control bg-white border-0" value="<?php  $profileInfo->fetchOccupation($_SESSION['nickName']); ?>" placeholder="Occupation" style="height: 40px;">
                         </label>
-                        <label class="col-6 col-sm-6">
+                        <!-- <label class="col-6 col-sm-6">
                             fetchBirthDate
                             <input type="date" name="date" class="form-control bg-white border-0" value="<?php  $profileInfo->fetchBirthDate($_SESSION['nickName']); ?>" placeholder="password" style="height: 40px;">
-                        </label>
+                        </label> -->
                         <label class="col-6 col-sm-6" for="repeatPassword">
                             fetcDateCreation:
-                            <input type="date" name="DateCreation" class="form-control bg-white border-0" value="<?php  $profileInfo->fetcDateCreation($_SESSION['nickName']); ?>" placeholder="confirme password" style="height: 40px;">
+                            <?php  $profileInfo->fetcDateCreation($_SESSION['nickName']); ?>
                         </label>
                         <div class="col-12">
                             <button class="btn btn-primary w-50 text-center" name="updateProfile" id="btn-updateProfile" type="submit" style="height: 40px;">Update</button>

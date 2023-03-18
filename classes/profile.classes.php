@@ -23,8 +23,8 @@ include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
         return $profileData;
     }
     
-    protected function updetProfileInfo($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date) {
-        $stmt = $this->connect()->prepare('UPDATE client SET Nickname = ?, Name = ?, Address = ?, Email = ?, Email = ?, Phone = ?, CIN = ?, Occupation = ?, Birth_Date = ?, WHERE Nickname = ?;');
+    public function updetProfileInfo($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date) {
+        $stmt = $this->connect()->prepare('UPDATE client SET Nickname = ?, Name = ?, Address = ?, Email = ?, Phone = ?, CIN = ?, Occupation = ?, Birth_Date = ?, WHERE Nickname = ?;');
 
         if(!$stmt->execute(array($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date))) {
 
@@ -35,6 +35,27 @@ include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
 
         $stmt = null;
 
+    }
+
+    // cheack is Admin or not
+    public function AdminCheck($Nickname) {
+        $stmt = $this->connect()->prepare('SELECT Admin FROM client WHERE Nickname = ?;');
+
+        if(!$stmt->execute([$Nickname])) {
+            $stmt = null;
+            header("location: ../index.php?erer=stmtfailed");
+            exit();
+        }
+
+        if ($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("location: ../index.php?erer=ProfileNotFound");
+            exit();
+        }
+
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $profileData;
     }
 
     // // ============================================================================================

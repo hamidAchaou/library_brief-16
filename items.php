@@ -8,19 +8,22 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
     <div class="container-fluid position-relative p-5 position-fixed" style="background-color: #061429; z-index: 999;">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
             <!-- logo -->
-            <a href="index.php" class="navbar-brand p-0">
+            <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.php" class="nav-item nav-link">Home</a>
-                    <a href="#aboutLibrary" class="nav-item nav-link">About</a>
-                    <a href="items.php" class="nav-item nav-link">Reservation</a>
+                    <a href="myReservation.php" class="nav-item nav-link">My Reservation</a>
+                    <a href="items.php" class="nav-item nav-link  text-info selectNav">Items</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
+                        <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
                             <a href="profile.php" class="dropdown-item">profile</a>
-                            <a href="myReservation.php" class="dropdown-item">My Reservation</a>
+                            <a href="feature.html" class="dropdown-item">change password</a>
                             <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
@@ -60,20 +63,71 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
             </div>
             <div class=" g-5">
                 <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
+
+
                 <?php
-                // Show items as you search
-                    if(isset($_POST['itemsSerch'])) {
-                        $inpitemsSerch = $_POST['inpitemsSerch'];
+                //   get data width class addItems.classes
+                $showItems = new AddItems();
+                $collectionData = $showItems->getCollectionInfo();
+
+                // print_r($collectionData);
+
+                foreach ($collectionData as  $key => $value) :
+                    $collection_code = $value["Collection_Code"];
+                  
+            ?>
+
+                <!-- <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px""> -->
+                <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
+                            <img class="img-fluid" src="/uploads/<?php echo $value["cover_image"] ?>" alt="">
+                            <!-- <img class="img-fluid" src="/uploads/2.jpg" alt=""> -->
+                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
+                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
+                                <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                            </div>
+                            <div  class="d-flex justify-content-center mb-3">
+                                <?php
+                                  if ($value["Status"] !== "Available") {
+                                    echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
+                                  } else {
+                                ?>
+                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
+                                <?php
+                                };
+                                ?>
+                            </div>
+                    </div>
+                </div>
                 
-                        include "/xampp/htdocs/library_brief-16/classes/serchInItems.classes.php";
+                <!--========== start modal reservation =============-->
+                <div class="modal fade" id="reserv<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">reservation</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>reservation</h1>
+                            <p>are you sur reserv this?</p>
                 
-                        $serch = new SerchInItems();
-                        $serch->itemsSerch($inpitemsSerch, $inpitemsSerch);
-                        print_r($serch);
-                    } else {
-                        // Show items
-                        include_once "showCollection.php";
-                    }
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger"><a href="reserv.php?idcollection=<?php echo $value['Collection_Code'] ?>">reserv</a></button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!--========== end modal reservation =============-->
+
+                <?php
+                  endforeach;
                 ?>
                 </div>
             </div>

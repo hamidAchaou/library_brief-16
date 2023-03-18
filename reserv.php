@@ -1,13 +1,13 @@
 <?php
     session_start();
-    $idCollection = $_GET['idcollection'];
+    $Collection_Code  = $_GET['idcollection'];
     // echo $idCollection;
     // print_r($idCollection);
     $status = "booked_up";
 
     include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
     $dataCollection = new AddItems();
-    $idCollection = $dataCollection->selectCollectionInfo($idCollection);
+    $idCollection = $dataCollection->selectCollectionInfo($Collection_Code);
 
 
     $current_time = date('Y-m-d H:i:s'); // Get the current time in the format of "YYYY-MM-DD HH:MM:SS"
@@ -32,12 +32,19 @@
       if ($idCollection[0]['Status'] != "Available") {
         echo "this item is booked up";
       } else {
-        echo "this item is available";
         $dataCollection = new AddItems();
         $dataCollection->updatestatus($status, $idCollection[0]['Collection_Code']);
   
         $dataCollection->insertReservation($idCollection[0]['Collection_Code'] , $_SESSION['nickName']);
-        header("location: ../items.php?erer=this_Itemis_Reserv");
+
+        echo '
+        <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
+          <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
+              <h1 class=" ">this items is reserved</h1>
+              <a href="items.php" class="btn btn-primary d-flex justify-content-center w-75 animated slideInLeft">OK</a>
+          </div>
+        </div>
+        ';
       }
     }
     

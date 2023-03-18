@@ -8,7 +8,8 @@ include "header.php";
 
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+    <!--================ navbar start ================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -16,12 +17,13 @@ include "header.php";
             <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
             </button> -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse logSin" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
-                    <a href="Reservation.admin.php" class="nav-item nav-link">Reservation</a>
-                    <a href="Exposed-items.admin.php" class="nav-item nav-link">Exposed items</a>
-                    <a href="add-items.admin.php" class="nav-item nav-link">Add items</a>
+                    <a href="items.admen.php" class="nav-item nav-link">Items</a>
+                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
+                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
+                    <a href="add-items.admin.php" class="nav-item nav-link text-primary">Add items</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
                         <div class="dropdown-menu m-0">
@@ -33,6 +35,7 @@ include "header.php";
                 </div>
             </div>
         </nav>
+    <!--================ navbar end ================== -->
 
     <!-- Section: Design Block -->
 <section class=" text-center text-lg-start">
@@ -55,8 +58,8 @@ include "header.php";
     </style>
 
 
-    <main class="container">
-        <div class="card mb-3 mt-5 logSin">
+    <main class="">
+        <div class="card mb-3 mt-5 bg-secondary">
             <div class="row g-0 d-flex align-items-center">
                 <div class="col-lg-4 d-none d-lg-flex">
                     <img src="img/10.jpg" alt="Trendy Pants and Shoes"
@@ -70,13 +73,13 @@ include "header.php";
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">Title:</label>
+                          <label class="form-label" for="Title">Title:</label>
                           <input type="text" name="Title" class="form-control" placeholder="Enter Your Title" />
                         </div>
       
                         <!-- Email input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">Author Name:</label>
+                          <label class="form-label" for="Author_Name">Author Name:</label>
                           <input type="text" name="Author_Name" class="form-control" placeholder="Enter Your Author Name:" />
                         </div>
                     </div>
@@ -84,7 +87,7 @@ include "header.php";
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">Cover_Image:</label>
+                          <label class="form-label" for="Cover_Image">Cover_Image:</label>
                           <!-- <input type="file" name="Cover_Image" class="form-control" placeholder="Enter Your Cover_Image" /> -->
                           <input type="file" name="Cover_Image" class="form-control" placeholder="Enter Your Cover Image:" />
 
@@ -92,7 +95,7 @@ include "header.php";
       
                         <!-- Email input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">State:</label>
+                          <label class="form-label" for="State">State:</label>
                           <input type="text" name="State" class="form-control" placeholder="Enter Your State:" />
                         </div>
                     </div>
@@ -100,13 +103,13 @@ include "header.php";
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">Edition Date:</label>
+                          <label class="form-label" for="Edition_Date">Edition Date:</label>
                           <input type="date" name="Edition_Date" class="form-control" placeholder="Enter Your Edition Date" />
                         </div>
       
                         <!-- Email input -->
                         <div class="form-outline mb-4 w-50">
-                          <label class="form-label" for="form2Example1">Buy Date:</label>
+                          <label class="form-label" for="Buy_Date">Buy Date:</label>
                           <input type="date" name="Buy_Date" class="form-control" placeholder="Enter Your Buy Date:" />
                         </div>
                     </div>
@@ -131,7 +134,7 @@ include "header.php";
                     </div>
 
                     <div class="form-outline mb-4 w-50">
-                      <label class="form-label" for="form2Example2">Pages_Number:</label>
+                      <label class="form-label" for="Pages_Number">Pages_Number:</label>
                       <input type="number" name="Pages_Number"  class="form-control" placeholder="Enter Your Pages Number " />
                     </div>
 

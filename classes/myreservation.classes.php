@@ -16,6 +16,7 @@ class myReservation extends Dbh {
         $myReservationData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $myReservationData;
     }
+
 }
 
 ?>
