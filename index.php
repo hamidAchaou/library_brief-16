@@ -1,5 +1,19 @@
 <?php
 session_start();
+// check Penalty count 
+include "/xampp/htdocs/library_brief-16/classes/penaltyCount.classes.php";
+$PenaltyCount = new PenaltyCount();
+$getBorrowingReturnDate = $PenaltyCount->getBorrowingReturnDate($_SESSION['nickName']);
+$today = date("Y-m-d");
+
+foreach($getBorrowingReturnDate as $key => $value) {
+    // Compare today's date with the repeat date, and if today's date is greater than the number of one penalty
+    if ($today > $value['Borrowing_Return_Date'] && $value['Status'] === 'Borrowed') {
+        $PenaltyCount->insertPenaltyCount($_SESSION['nickName']);
+    }
+}
+
+// get header
 include "header.php";
 ?>
 
@@ -137,7 +151,7 @@ include "header.php";
     </div>
     <!-- Facts Start -->
 
-    <!-- Blog Start -->
+    <!-- show random items for reservation Start -->
     <div class="wow fadeInUp" data-wow-delay="0.1s">
         <div class="py-3 bg-secondary">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -221,7 +235,7 @@ include "header.php";
             </div>
         </div>
     </div>
-    <!-- Blog Start -->
+    <!-- show random items for reservation end -->
 
 
     <!-- About Start -->

@@ -6,7 +6,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
 
 <body>
     <!--================ navbar start ================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -35,7 +35,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
     <!--================ navbar end ================== -->
 
 
-        <!-- Team Start -->
+    <!-- Team Start -->
     <div class="container-fluid py-5 wow fadeInUp mt-5" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -52,6 +52,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
               <?php
                 $confirme = new confirmReservation();
                 $confirmeData = $confirme->getReservationInfo();
+
                 foreach ($confirmeData as $key => $value) :  
               ?>
 

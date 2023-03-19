@@ -33,12 +33,20 @@ session_start();
 // $dataCollection = date('Y-m-d H:i:s');
 // // echo $dataCollection;
 
-$current_time = time(); // Get the current Unix timestamp
-$future_time = strtotime("+15 days", $current_time); // Add 15 days to the current timestamp
+// $current_time = time(); // Get the current Unix timestamp
+// $future_time = strtotime("+15 days", $current_time); // Add 15 days to the current timestamp
 
-$Borrowing_Return_Date = date("Y-m-d H:i:s", $future_time); // Format the future timestamp as a date and time string and output it
-echo $Borrowing_Return_Date;
+// $Borrowing_Return_Date = date("Y-m-d H:i:s", $current_time); // Format the future timestamp as a date and time string and output it
+echo $current_time = time();;
 ?>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

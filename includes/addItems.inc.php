@@ -29,43 +29,44 @@ include "../header.php";
             if ($fileError === 0) {
                 if ($fileSize < 2000000) {
                     $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = '../uploads'.$fileNameNew;
-                    // move_uploaded_file($fileTmpName, $fileDestination);
-
+                    $fileDestination = '/uploads'.$fileNameNew;
+                    move_uploaded_file($fileTmpName, $fileDestination);
+        
                     // instantiate AddItems class
-                    include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
-                    include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
-                    include "/xampp/htdocs/library_brief-16/classes/addItems.contr.classes.php";
-                    $addItems = new addItemsContr($Title, $Author_Name, $fileDestination, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number );
-
-                    // running errore handlersand user signup
+                    include "../classes/dbh.classes.php";
+                    include "../classes/addItems.classes.php";
+                    include "../classes/addItems.contr.classes.php";
+                    $addItems = new addItemsContr($Title, $Author_Name, $fileDestination, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number);
+        
+                    // running error handlers and user signup
                     $addItems->AddItems();
-
+        
                     echo '
                     <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
                       <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-                          <h1 class=" ">this Items is Upload</h1>
+                          <h1 class=" ">This item has been uploaded.</h1>
                           <a href="../add-items.admin.php" class="btn btn-primary d-flex justify-content-center w-75 animated slideInLeft">OK</a>
                       </div>
                     </div>
                     ';
-
+        
                 } else {
                     echo '
                     <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
                       <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-                          <h1 class=" ">this file is  a big</h1>
+                          <h1 class=" ">This file is too big.</h1>
                           <a href="../add-items.admin.php" class="btn btn-danger d-flex justify-content-center w-75 animated slideInLeft">OK</a>
                       </div>
                     </div>
                     ';
                 }
             } else {
-                echo 'there was an error uploading your file!';
+                echo 'There was an error uploading your file.';
             }
         } else {
-            echo 'you can not upload files of this Type';
+            echo 'You cannot upload files of this type.';
         }
+        
 
 
 

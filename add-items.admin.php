@@ -9,7 +9,7 @@ include "header.php";
 
 
     <!--================ navbar start ================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -69,7 +69,7 @@ include "header.php";
               <div class="card-body py-5 px-md-5">
                 
                 <form class=""  action="includes/addItems.inc.php" method="post" enctype="multipart/form-data">
-                    <h3>Sign Up</h3>
+                    <h3>Add Items</h3>
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
                         <div class="form-outline mb-4 w-50">
@@ -96,7 +96,13 @@ include "header.php";
                         <!-- Email input -->
                         <div class="form-outline mb-4 w-50">
                           <label class="form-label" for="State">State:</label>
-                          <input type="text" name="State" class="form-control" placeholder="Enter Your State:" />
+                          <select name="State" id="State" class="rounded p-2 mb-4 w-100">
+                              <option value="New">New</option>
+                              <option value="Good condition,">Good condition</option>
+                              <option value="Acceptable">Acceptable</option>
+                              <option value="Fairly worn">Fairly worn</option>
+                              <option value="and Torn">and Torn</option>
+                          </select>
                         </div>
                     </div>
 
@@ -116,15 +122,15 @@ include "header.php";
                 
                     <div class="d-flex w-100 gap-3">
                     <div for="Status" class="form-outline mb-4 w-50">
-                      Status <br>
-                      <select name="Status" class="h-50 w-100 rounded pr-4">
+                      Status 
+                      <select name="Status" class="mb-4 w-100 h-50 rounded p-2">
                         <option value="Available" selected>Available</option>
                         <option value="booked_up">booked_up</option>
                       </select>
                     </div>
                     <div for="Type" class="form-outline mb-4 w-50">
-                      Type: <br>
-                      <select name="Type" class="h-50 w-100 rounded pr-4">
+                      Type: 
+                      <select name="Type" class=" mb-4 w-100 h-50 rounded p-2">
                         <option value="Books" selected>Books</option>
                         <option value="cd">cd</option>
                         <option value="Novel">Novel</option>

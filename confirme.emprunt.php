@@ -1,12 +1,12 @@
 <?php
 session_start();
 include "header.php";
-include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
+include "/xampp/htdocs/library_brief-16/classes/borrowing.classes.php";
 ?>
 
 <body>
     <!--================ navbar start ================== -->
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
@@ -42,61 +42,12 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
                 <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
             </div>
-            <div class="d-flex justify-content-center mb-5">
-                <button class="btn  btn-Reservation">Confirme Reservation</button>
-                <button class="btn btn-primary btn-Emprunt">Confirme Emprunt</button>
-            </div>
-            <!--========================-- start show Cards confirme reservation --=============================-->
-            <div class="row g-5 Reservation active">
-            
-              <?php
-                $confirme = new confirmReservation();
-                $confirmeData = $confirme->getReservationInfo();
-                // echo "<pre>";
-                // print_r($confirmeData);
-                // echo "</pre>";
-                foreach ($confirmeData as $key => $value) :  
-              ?>
-
-
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/2.jpg" alt="">
-                            <!-- <form method="post" action="" class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="button" href="../library_brief-16/includes/confirme-reservation.inc.php">Confirme</a>
-                            </form> -->
-                                
-                            <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                                <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme</button>
-                            </form>
-
-                        </div>
-                            <div class="p-4">
-                                <h3>Title: <span class="text-primary"><?php echo $value['Title'] ?></span></h3>
-                                <h4>Author Name: <span class="text-primary"><?php echo $value['Author_Name'] ?></span></h4>
-                                <h4>Type: <span class="text-primary"><?php echo $value['Type'] ?></span></h4>
-                                <h4>Name:<span class="text-primary"><?php echo $value['Name'] ?></span></h4>
-                                <h4>Cin: <span class="text-primary"><?php echo $value['CIN'] ?></span></h4>
-                                <h4>Collection Code: <span class="text-primary"><?php echo $value['Collection_Code'] ?></span></h4>
-                            </div>
-                    </div>
-                </div>
-              <?php
-                endforeach;
-              ?>
-            </div>
-            <!--========================-- end show Cards confirme reservation --=============================-->
-
           <!--========================-- start show Cards confirme emprunt --=============================-->
           <div class="row g-5 Emprunt">
             
             <?php
-              $confirme = new confirmReservation();
+              $confirme = new confirmBorrowing();
               $confirmeEmpruntData = $confirme->showResrvEmprunt();
-              // echo "<pre>";
-              // print_r($confirmeData);
-              // echo "</pre>";
               foreach ($confirmeEmpruntData as $key => $value) :  
             ?>
 
@@ -110,7 +61,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
                           </form> -->
                               
                           <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme Emprunt</button>
+                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-75" name="confirmeEmprunt" type="submit">Confirme Emprunt</button>
                           </form>
 
                       </div>

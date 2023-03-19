@@ -24,17 +24,15 @@ include "/xampp/htdocs/library_brief-16/classes/dbh.classes.php";
     }
     
     public function updetProfileInfo($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date) {
-        $stmt = $this->connect()->prepare('UPDATE client SET Nickname = ?, Name = ?, Address = ?, Email = ?, Phone = ?, CIN = ?, Occupation = ?, Birth_Date = ?, WHERE Nickname = ?;');
-
-        if(!$stmt->execute(array($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date))) {
-
+        $stmt = $this->connect()->prepare('UPDATE client SET Nickname = ?, Name = ?, Address = ?, Email = ?, Phone = ?, CIN = ?, Occupation = ?, Birth_Date = ? WHERE Nickname = ?');
+    
+        if (!$stmt->execute(array($Nickname, $Name, $Address, $Email, $Phone, $CIN, $Occupation, $Birth_Date, $Nickname))) {
             $stmt = null;
-            header("location: ../index.php?erer=stmtfailed");
+            header("location: ../index.php?error=stmtfailed");
             exit();
         }
-
+    
         $stmt = null;
-
     }
 
     // cheack is Admin or not

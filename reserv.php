@@ -22,9 +22,9 @@
     if ($ExpriationDate >= 3) {
       echo '
       <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-            <h1 class=" ">You have ed 3 items</h1>
-            <a href="items.php" class="btn btn-primary d-flex justify-content-center w-75 animated slideInLeft">OK</a>
+        <div class="text-center container bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
+            <h2 class="text-danger">Sorry, you cannot reserve more than three items!!</h2>
+            <a href="items.php" class="btn btn-info d-flex justify-content-center w-75 animated slideInLeft">OK</a>
         </div>
       </div>
       ';

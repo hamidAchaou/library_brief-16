@@ -111,7 +111,7 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger"><a href="deletCollection.php?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</a></button>
+                            <button type="button" class="btn btn-danger"><a href="deletCollection.inc.php">Delete</a></button>
                         </div>
                         </div>
                     </div>

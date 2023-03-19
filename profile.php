@@ -140,7 +140,7 @@ $profileInfo = new ProfileInfoContr();
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
                 <!-- start form profile Info -->
-                <form class="form-Signup " action="classes/profileinfo.upload.classes.php" method="post">
+                <form class="form-Signup " action="classes/profileinfo-update.classes.php" method="post">
                     <div class="row g-3">
 
                         <label class="col-12 col-sm-6">
@@ -189,7 +189,7 @@ $profileInfo = new ProfileInfoContr();
                             <?php  $profileInfo->fetcDateCreation($_SESSION['nickName']); ?>
                         </label>
                         <div class="col-12">
-                            <button class="btn btn-primary w-50 text-center" name="updateProfile" id="btn-updateProfile" type="submit" style="height: 40px;">Update</button>
+                            <button class="btn btn-primary w-50 text-center" name="updateProfile" id="btn-updateProfile" type="submit" style="height: 40px;">Update Profile</button>
                         </div>
                     </div>
                 </form>
