@@ -25,18 +25,36 @@ class AddItems extends Dbh {
     $stmt = null;
   }
 
-  // Delet collection items
-  public function DeleteItems($Collection_Code) {
-    $stmt = $this->connect()->prepare("DELETE FROM collection WHERE collection_code = ?;");
-    if (!$stmt->execute(array($Collection_Code))) {
-      $stmt = null;
-      header("location: addItems.classes.php?erer=stmtfailed");
+  public function deleteItems($collectionCode) {
+    $stmt = $this->connect()->prepare("DELETE FROM collection WHERE `collection`.`Collection_Code` = ?");
+    if (!$stmt->execute([$collectionCode])) {
+      // Error occurred
+      header("Location: addItems.classes.php?error=stmtfailed");
       exit();
     }
+    // Query executed successfully
     $stmt = null;
   }
 
   // select data collection in databases
+    // use PascalCase naming convention for classes
+    // public function getCollectionInfo($start, $limit)
+    // {
+    //     // fetch only the required columns
+    //     $stmt = $this->connect()->prepare("SELECT * FROM collection LIMIT ?, OFFSET ?;");
+    //     if (!$stmt->execute(array($start, $limit))) {
+    //         // log the error
+    //         error_log("Error fetching collection data.");
+    //         $stmt = null;
+    //         // show a user-friendly error message
+    //         header("location: ../index.php?error=stmtfailed");
+    //         exit();
+    //     }
+    //     $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     return $collectionData;
+    // }
+
+      // select data collection in databases
   public function getCollectionInfo() {
     $stmt = $this->connect()->prepare('SELECT * FROM collection;');
     if(!$stmt->execute()) {
@@ -52,21 +70,42 @@ class AddItems extends Dbh {
     $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-    // $annoncesLength = $conn->query($page)->rowCount();
-
-    // $pagesNum = 0;
-  
-    // if (($annoncesLength % 6) == 0) {
-  
-    //   $pagesNum = $annoncesLength / 6;
-    // } else {
-    //   $pagesNum = ceil($annoncesLength / 6);
-    // }
-
-
     return $collectionData;
   }
 
+    // select data table collection
+    public function getDataCollection()
+    {
+        // fetch only the required columns
+        $stmt = $this->connect()->prepare("SELECT * FROM collection;");
+        if (!$stmt->execute()) {
+            // log the error
+            error_log("Error fetching collection data.");
+            $stmt = null;
+            // show a user-friendly error message
+            header("location: ../index.php?error=stmtfailed");
+            exit();
+        }
+        $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $collectionData;
+    }
+
+    // get row count data collection
+    public function getDataCollectionRowCount()
+    {
+        // fetch only the required columns
+        $stmt = $this->connect()->prepare("SELECT * FROM collection;");
+        if (!$stmt->execute()) {
+            // log the error
+            error_log("Error fetching collection data.");
+            $stmt = null;
+            // show a user-friendly error message
+            header("location: ../index.php?error=stmtfailed");
+            exit();
+        }
+        $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return count($collectionData);
+    }
   // methode return one row in table collection
   public function selectCollectionInfo($Collection_Code ) {
     $stmt = $this->connect()->prepare('SELECT * FROM collection WHERE Collection_Code  = ?;');

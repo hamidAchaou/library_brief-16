@@ -1,11 +1,11 @@
 <?php
 include "header.php";
-    $collectionId = $_GET["idCollection"];
-    // echo $collectionId;
+    $Collection_Code = $_GET["idCollection"];
+    echo $Collection_Code;
 
     include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
     $deleteCollection = new AddItems();
-    $deleteCollection->DeleteItems($collectionId);
+    $deleteCollection->DeleteItems($Collection_Code);
 
     echo '
     <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">

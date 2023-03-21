@@ -176,8 +176,12 @@ h6,
     display: none;
 }
 
+/* ========== style page my reservation end ======================== */
+.bg-myreservation {
+    /* background: url(../img/21.jpg) center center/cover; */
+}
 
-
+/* ========== style page my reservation start ======================== */
 
 #main-login {
     /* background: url(/img/4.jpg) center center/cover; */

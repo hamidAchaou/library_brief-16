@@ -28,16 +28,23 @@ include "../header.php";
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
                 if ($fileSize < 2000000) {
-                    $fileNameNew = uniqid('', true).".".$fileActualExt;
-                    $fileDestination = '/uploads'.$fileNameNew;
-                    move_uploaded_file($fileTmpName, $fileDestination);
+                    $fileNameNew = uniqid().".".$fileActualExt;
+                    // $newImageName = 
+                    // $fileDestination = '../uploads/'.$fileNameNew;
+
+                    move_uploaded_file($fileTmpName, '../uploads/' . $fileNameNew);
         
                     // instantiate AddItems class
                     include "../classes/dbh.classes.php";
                     include "../classes/addItems.classes.php";
                     include "../classes/addItems.contr.classes.php";
-                    $addItems = new addItemsContr($Title, $Author_Name, $fileDestination, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number);
-        
+                    // $addItems = new addItemsContr($Title, $Author_Name, $fileDestination, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number);
+                    $addItems = new addItemsContr($Title, $Author_Name, $fileNameNew, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number);
+
+                    // $addItems = new addItemsContr();
+                    // $addItems->addItems($Title, $Author_Name, $fileDestination, $State, $Edition_Date, $Buy_Date, $Status, $Type, $Pages_Number);
+
+
                     // running error handlers and user signup
                     $addItems->AddItems();
         

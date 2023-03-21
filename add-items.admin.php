@@ -5,68 +5,46 @@ include "header.php";
 
 
 <body>
-
-
-
-    <!--================ navbar start ================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
-            <!-- logo -->
-            <a href="index.html" class="navbar-brand p-0">
-                <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
-            </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
-            <div class="collapse navbar-collapse logSin" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
-                    <a href="items.admen.php" class="nav-item nav-link">Items</a>
-                    <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
-                    <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
-                    <a href="add-items.admin.php" class="nav-item nav-link text-primary">Add items</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
-                        <div class="dropdown-menu m-0">
-                            <a href="profile.php" class="dropdown-item">profile</a>
-                            <a href="feature.html" class="dropdown-item">change password</a>
-                            <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
-                        </div>
-                    </div>
+  <!--================ navbar start ================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
+    <!-- logo -->
+    <a href="index.html" class="navbar-brand p-0">
+        <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
+    </a>
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="fa fa-bars"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+            <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
+            <a href="items.admen.php" class="nav-item nav-link">Items</a>
+            <a href="confirme.rservation.php" class="nav-item nav-link">Reservation</a>
+            <a href="confirme.emprunt.php" class="nav-item nav-link">Emprunt</a>
+            <a href="add-items.admin.php" class="nav-item nav-link text-primary">Add items</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="condary nav-link dropdown-toggle" data-bs-toggle="dropdown"><?php echo $_SESSION['nickName'] ?></a>
+                <div class="dropdown-menu m-0">
+                    <a href="profile.php" class="dropdown-item">profile</a>
+                    <a href="feature.html" class="dropdown-item">change password</a>
+                    <a href="includes/logout.inc.php" class="dropdown-item">Logout</a>
                 </div>
             </div>
-        </nav>
-    <!--================ navbar end ================== -->
+        </div>
+    </div>
+  </nav>
+  <!--================ navbar end ================== -->
 
-    <!-- Section: Design Block -->
-<section class=" text-center text-lg-start">
-    
-    <style>
-      .rounded-t-5 {
-        border-top-left-radius: 0.5rem;
-        border-top-right-radius: 0.5rem;
-      }
-  
-      @media (min-width: 992px) {
-        .rounded-tr-lg-0 {
-          border-top-right-radius: 0;
-        }
-  
-        .rounded-bl-lg-5 {
-          border-bottom-left-radius: 0.5rem;
-        }
-      }
-    </style>
-
-
-    <main class="">
+    <!-- main add items start-->
+  <main class=" text-center text-lg-start">
+    <section class="">
         <div class="card mb-3 mt-5 bg-secondary">
             <div class="row g-0 d-flex align-items-center">
-                <div class="col-lg-4 d-none d-lg-flex">
+                <div class="col-lg-4 p-0 d-none d-lg-flex">
                     <img src="img/10.jpg" alt="Trendy Pants and Shoes"
-                    class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                    class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 p-0" />
                 </div>
                 <div class="col-lg-8">
-              <div class="card-body py-5 px-md-5">
+              <div class="card-body py-5 px-md-5 mt-4">
                 
                 <form class=""  action="includes/addItems.inc.php" method="post" enctype="multipart/form-data">
                     <h3>Add Items</h3>
@@ -152,10 +130,25 @@ include "header.php";
             </div>
           </div>
         </div>
-    </main>
-
-  </section>
-  <!-- Section: Design Block -->
+    </section>
+  </main>
+    <!-- main add items end-->
+    <style>
+      .rounded-t-5 {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+  
+      @media (min-width: 992px) {
+        .rounded-tr-lg-0 {
+          border-top-right-radius: 0;
+        }
+  
+        .rounded-bl-lg-5 {
+          border-bottom-left-radius: 0.5rem;
+        }
+      }
+    </style>
 
   
 <?php

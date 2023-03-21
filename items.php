@@ -5,15 +5,11 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
 ?>
 <body>
     <!--========== Navbar Start ==================-->
-    <div class="container-fluid position-relative p-5 position-fixed" style="background-color: #061429; z-index: 999;">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 position-fixed" style="background-color: #061429; z-index: 999;">
             <!-- logo -->
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.php" class="nav-item nav-link">Home</a>
@@ -30,9 +26,8 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                 </div>
             </div>
         </nav>
-    </div>
     <!--========== Navbar end ==================-->
-    <!--================ Header ==========================-->
+    <!--================ Header start ==========================-->
     <header class="bg-dark py-4">
         <div class="container px-5">
             <div class="row gx-5 align-items-center justify-content-center">
@@ -53,57 +48,58 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
             </div>
         </div>
     </header>
-    <!--==================== End Heder ===========================-->
+    <!--==================== Heder end ===========================-->
     <!--=================== show Items Start =====================================-->
     <div class="container-fluid wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-3">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h1 class="mb-0">Welcome in your <br> library</h1>
-                <h5 class="fw-bold text-primary text-uppercase pt-3">chose your Knowledge</h5>
-            </div>
-            <div class=" g-5">
-                <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
+      <div class="container py-3">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h1 class="mb-0">Welcome in your <br> library</h1>
+            <h5 class="fw-bold text-primary text-uppercase pt-3">chose your Knowledge</h5>
+        </div>
+        <div class=" g-5">
+            <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
 
+            <?php
+            //   get data with class addItems.classes
+            // $showItems = new AddItems();
+            // $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            // $itemsPerPage = 6;
+            // $offset = ($currentPage - 1) * $itemsPerPage;
+            // $collectionData = $showItems->getCollectionInfo($itemsPerPage, $offset);
 
-                <?php
-                //   get data width class addItems.classes
-                $showItems = new AddItems();
-                $collectionData = $showItems->getCollectionInfo();
+            //   get data width class addItems.classes
+            $showItems = new AddItems();
+            $collectionData = $showItems->getCollectionInfo();
 
-                // print_r($collectionData);
-
-                foreach ($collectionData as  $key => $value) :
-                    $collection_code = $value["Collection_Code"];
-                  
+            foreach ($collectionData as $key => $value) :
+                $collection_code = $value["Collection_Code"];
             ?>
-
-                <!-- <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px""> -->
-                <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid" src="/uploads/<?php echo $value["cover_image"] ?>" alt="">
-                            <!-- <img class="img-fluid" src="/uploads/2.jpg" alt=""> -->
-                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
-                            </div>
-                            <div  class="d-flex justify-content-center mb-3">
-                                <?php
-                                  if ($value["Status"] !== "Available") {
-                                    echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
-                                  } else {
-                                ?>
-                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
-                                <?php
-                                };
-                                ?>
-                            </div>
+            
+            <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                <div class="blog-item bg-light rounded overflow-hidden">
+                    <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
+                        <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $value["cover_image"] ?>" alt="">
+                        <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
+                        <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
+                        <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3">
+                        <?php
+                        if ($value["Status"] !== "Available") {
+                            echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
+                        } else {
+                        ?>
+                            <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
+                        <?php
+                        };
+                        ?>
                     </div>
                 </div>
-                
+            </div>
+
                 <!--========== start modal reservation =============-->
                 <div class="modal fade" id="reserv<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -125,7 +121,6 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                     </div>
                 </div>
                 <!--========== end modal reservation =============-->
-
                 <?php
                   endforeach;
                 ?>
@@ -133,6 +128,7 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
             </div>
         </div>
     </div>
+    <!--=================== show Items end =====================================-->
     <!--=================== show Items end =====================================-->
     <!-- foooter start -->
     <?php

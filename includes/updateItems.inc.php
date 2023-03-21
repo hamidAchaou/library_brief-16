@@ -12,16 +12,17 @@
         $Type = $_POST['Type'];
         $Pages_Number = $_POST['Pages_Number'];
 
-        $uploads_dir = '/uploads';
+        $uploads_dir = '../uploads';
         $name = $_FILES['Cover_Image']['name'];
+        $img_des = $uploads_dir.$name;
+
         if (is_uploaded_file($_FILES['Cover_Image']['tmp_name']))
         {
             //in case you want to move  the file in uploads directory
-            move_uploaded_file($_FILES['Cover_Image']['tmp_name'], $uploads_dir.$name);
+            move_uploaded_file($_FILES['Cover_Image']['tmp_name'], $img_des);
            // echo 'moved file to destination directory';
 
         }
-        $img_des = $uploads_dir.$name;
 
 
         include_once "/xampp/htdocs/library_brief-16/classes/update-items.classes.php";

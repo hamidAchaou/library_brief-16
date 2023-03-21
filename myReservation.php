@@ -1,5 +1,6 @@
 <?php
 session_start();
+    // get header page
     include "header.php";
 ?>
 <body>
@@ -10,9 +11,6 @@ session_start();
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.php" class="nav-item nav-link">Home</a>
@@ -29,10 +27,9 @@ session_start();
                 </div>
             </div>
         </nav>
-
     </div>
 
-    <!-- Service Start -->
+    <!-- show cards my reservation Start -->
     <div class="container-fluid py-5 wow fadeInUp mt-5 bg-secondary" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -45,35 +42,43 @@ session_start();
             <div class="row g-5">
 
                 <?php
+                // declaration page class my reservaion
                   include_once "/xampp/htdocs/library_brief-16/classes/myreservation.classes.php";
                   $myreserve = new myReservation();
+                //   get Data my reservation
                   $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName']);
-
+                // loop in data My reservation for show Cards mt Reservation
                   foreach ($dataMyreservation as $key => $value) :
                 ?>
-
-                  <div class="col-lg-4 col-md-6 wow zoomIn">
-                      <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5 bg-light">
-                          <img class="img-fluid rounded" src="img/10.jpg" style="width: 60px; height: 60px;" >
-                          <div class="ps-4">
-                              <h4 class="text-primary mb-1"><?php echo $value['Title'] ?></h4>
-                              <small class="text-uppercase"><?php echo $value['Type'] ?></small>
-                          </div>
-                      </div>
-                      <div class="pt-4 pb-5 px-5 bg-light">
-                          <h3><?php echo $value['Reservation_Date'] ?></h3>
-                      </div>
-                  </div>
+                  <!-- cards My Reservation start -->
+                  <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="team-item bg-light rounded overflow-hidden">
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="uploads/<?php echo $value['Type'] ?>" alt="" style="height: 190px;">
+                            <div class="team-social">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><?php echo $value['Type'] ?></i></a>
+                            </div>
+                        </div>
+                        <div class=" py-2">
+                            <h5 class="text-uppercase w-100 text-dark font-weight-bold d-flex h6 justify-content-end"><?php echo $value['Author_Name'] ?></h5>
+                            <h4 class="text-primary text-center mb-1 w-75"><?php echo $value['Title'] ?></h4>
+                            <div class="ps-4 mt-4 d-flex flex-wrap text-light w-100 h-50 justify-content-around bg-success p-4">
+                              <h5 class="text-uppercase"><i class="fa-solid fa-house-circle-check text-dark"></i> <?php echo $value['Type'] ?></h5>
+                              <h5 class="text-uppercase"><i class="fa-solid fa-file-circle-plus text-dark"></i> <?php echo $value['Pages_Number'] ?></h5>
+                              <h5 class="text-uppercase"><i class="fa-solid fa-calendar-days text-dark"></i> <?php echo $value['Reservation_Date'] ?></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- cards My Reservation end -->
 
                 <?php
                   endforeach;
                 ?>
-
-
             </div>
         </div>
     </div>
-    <!-- Service End -->
+    <!-- show cards my reservation  End -->
 
     
 <!-- foooter start -->

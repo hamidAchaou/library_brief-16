@@ -2,13 +2,15 @@
 session_start();
 include "../header.php";
 // <!--============ confirme reservation if click in btn confirme ============ -->
-$Reservation_Code = $_GET['Reservation_Code'];
-$NicknameCollection = $confirme->getNicknameCollection($Reservation_Code); 
+
 
 // Confirm your booking by clicking on button confirm reservation
     if(isset($_POST['confirmereserve'])){
         include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
         $confirme = new confirmReservation();
+        
+        $Reservation_Code = $_GET['Reservation_Code'];
+        $NicknameCollection = $confirme->getNicknameCollection($Reservation_Code); 
 
         // $confirmeData = $confirme->getReservationInfo();
         // $confirmeRese = new confirmReservation();
@@ -38,8 +40,10 @@ $NicknameCollection = $confirme->getNicknameCollection($Reservation_Code);
     // Confirm your booking by clicking on button confirm reservation
     if(isset($_POST['confirmeEmprunt'])){
         include '/xampp/htdocs/library_brief-16/classes/borrowing.classes.php';
-
         $confirmeBorrowing = new confirmBorrowing(); //declare classes confirme Borrowing
+
+        $Reservation_Code = $_GET['Reservation_Code'];
+        $NicknameCollection = $confirmeBorrowing->getNicknameCollection($Reservation_Code); 
 
         // change value status in table borrowings
         // update status column in table borrowings (From Returned to borrowid)

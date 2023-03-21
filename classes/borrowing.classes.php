@@ -49,6 +49,25 @@ class confirmBorrowing extends Dbh {
             }
             $stmt = null;
         }
+        // select Nick name and collection code
+        public function getNicknameCollection($Reservation_Code) {
+            $stmt = $this->connect()->prepare("SELECT Collection_Code  FROM reservation WHERE Reservation_Code = ?");
+
+            if(!$stmt->execute([$Reservation_Code])) {
+                $stmt = null;
+                header("location: ../confirme.rservation.php?erer=stmtfailed");
+                exit();
+            }
+
+            if ($stmt->rowCount() == 0) {
+                $stmt = null;
+                header("location: ../confirme.rservation.php?erer=ProfileNotFound");
+                exit();
+            }
+
+            $NickCollData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $NickCollData;
+        } 
 }
 
 ?>

@@ -50,7 +50,7 @@
 
     // cheack empty input
     private function emptyInput() {
-        if (empty($this->Title) || empty($this->Author_Name) || empty($this->Cover_Image) || empty($this->State) || empty($this->Edition_Date) || empty($this->Buy_Date) || empty($this->Status) || empty($this->Pages_Number)) {
+        if (empty($this->Title) || empty($this->Author_Name) || empty($this->State) || empty($this->Edition_Date) || empty($this->Buy_Date) || empty($this->Status) || empty($this->Pages_Number)) {
           return false;
         } else {
           return true;

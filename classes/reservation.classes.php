@@ -59,11 +59,7 @@ class confirmReservation extends Dbh {
         $NickCollData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $NickCollData;
     }    
-
-
-
-
-
+    
     // update column status in table reservation
     public function updatestatusReservation($Reservation_Code) {
         $stmt = $this->connect()->prepare("UPDATE reservation SET Status = 'Borrowed' WHERE Reservation_Code = ?;");
