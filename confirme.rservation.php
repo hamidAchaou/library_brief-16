@@ -1,9 +1,10 @@
 <?php
 session_start();
+// Declaration header
 include "header.php";
+// Declaration class Confirme Reservation
 include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
 ?>
-
 <body>
     <!--================ navbar start ================== -->
     <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
@@ -33,108 +34,98 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
             </div>
         </nav>
     <!--================ navbar end ================== -->
-
-
-    <!-- Team Start -->
+    <!--========================-- start show Cards confirme reservation --=============================-->
     <div class="container-fluid py-5 wow fadeInUp mt-5" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
                 <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
             </div>
-            <div class="d-flex justify-content-center mb-5">
-                <button class="btn btn-primary btn-Reservation">Confirme Reservation</button>
-                <button class="btn btn-Emprunt">Confirme Emprunt</button>
-            </div>
-            <!--========================-- start show Cards confirme reservation --=============================-->
-            <div class="row g-5 Reservation">
-            
-              <?php
-                $confirme = new confirmReservation();
-                $confirmeData = $confirme->getReservationInfo();
+            <div class="row g-5 Reservation">        
+             <?php
+              // Get reservation information
+              $confirmReservations = new ConfirmReservation();
+              $confirmReservationData = $confirmReservations->getReservationInfoAll();
+        
+              // Pagination
+              $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+              $itemsPerPage = 6;
+              $PageCount = ceil(count($confirmReservationData) / $itemsPerPage);
+              $beginning = ($page - 1) * $itemsPerPage;
+              $confirmReservationData = $confirmReservations->getReservationInfoLimit($beginning, $itemsPerPage);
 
-                foreach ($confirmeData as $key => $value) :  
-              ?>
-
-
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
+              // Display reservations
+              foreach ($confirmReservationData as $reservation) :
+             ?>
+              <!-- cards emprunt start -->
+              <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                  <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/2.jpg" alt="">
-                            <!-- <form method="post" action="" class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="button" href="../library_brief-16/includes/confirme-reservation.inc.php">Confirme</a>
-                            </form> -->
-                                
-                            <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                                <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme Reservation</button>
-                            </form>
-
+                            <img class="img-fluid w-100" src="uploads/<?php echo $reservation['Cover_Image'] ?>" alt="">
+                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $reservation["Type"] ?></h6>
                         </div>
-                            <div class="p-4">
-                                <h3>Title: <span class="text-primary"><?php echo $value['Title'] ?></span></h3>
-                                <h4>Author Name: <span class="text-primary"><?php echo $value['Author_Name'] ?></span></h4>
-                                <h4>Type: <span class="text-primary"><?php echo $value['Type'] ?></span></h4>
-                                <h4>Name:<span class="text-primary"><?php echo $value['Name'] ?></span></h4>
-                                <h4>Cin: <span class="text-primary"><?php echo $value['CIN'] ?></span></h4>
-                                <h4>Collection Code: <span class="text-primary"><?php echo $value['Collection_Code'] ?></span></h4>
+                        <div class="p-4">
+                            <h2 class="text-center w-100" style="height: 80px;"><?php echo $reservation['Title'] ?></h2>
+                        </div>
+                        <form class="d-flex justify-content-center mb-3" method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $reservation['Reservation_Code'] ?>">
+                            <button class="btn btn-lg btn-success btn-lg-square rounded w-75" name="confirmereserve" type="submit">Confirme Reservation</button>
+                        </form>
+                        <div class="card-stats bg-info">
+                            <div class="stat">
+                                <div class=""><i class="fa-solid fa-user"></i></div>
+                                <div class="type"><?php echo $reservation['Name'] ?></div>
                             </div>
-                    </div>
-                </div>
+                            <div class="stat border-stat">
+                                <div class=""><i class="fa-solid fa-user"></i></sub></div>
+                                <div class="type"><?php echo $reservation['CIN'] ?></div>
+                            </div>
+                            <div class="stat">
+                                <div class="reservation"><i class="fa-solid fa-barcode"></i></div>
+                                <div class="type"><?php echo $reservation['Collection_Code'] ?></div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+              <!-- cards emprunt end -->
               <?php
                 endforeach;
               ?>
+
+                <!-- cards pagination start -->
+                <div id="pagination" aria-label="...">
+                    <ul class="pagination">
+                        <?php
+                            if ($page > 1) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page-1).'">&laquo; Previous</a></li>';
+                            }
+                            for($i=1; $i<=$PageCount; $i++)  {
+                                if ($page == $i) {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link active' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                } else {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                }
+                            }
+                            if ($page < $PageCount) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page+1).'">Next &raquo;</a></li>';
+                            }
+                        ?>
+                    </ul>
+				</div>
+                <!-- cards pagination end -->
             </div>
-            <!--========================-- end show Cards confirme reservation --=============================-->
-
-          <!--========================-- start show Cards confirme emprunt --=============================-->
-          <div class="row g-5 Emprunt active">
-            
-            <?php
-              $confirme = new confirmReservation();
-              $confirmeEmpruntData = $confirme->showResrvEmprunt();
-              // echo "<pre>";
-              // print_r($confirmeData);
-              // echo "</pre>";
-              foreach ($confirmeEmpruntData as $key => $value) :  
-            ?>
-
-
-              <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                  <div class="team-item bg-light rounded overflow-hidden">
-                      <div class="team-img position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/2.jpg" alt="">
-                          <!-- <form method="post" action="" class="team-social">
-                              <a class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="button" href="../library_brief-16/includes/confirme-reservation.inc.php">Confirme</a>
-                          </form> -->
-                              
-                          <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="submit">Confirme</button>
-                          </form>
-
-                      </div>
-                          <div class="p-4">
-                              <h3>Title: <span class="text-primary"><?php echo $value['Title'] ?></span></h3>
-                              <h4>Author Name: <span class="text-primary"><?php echo $value['Author_Name'] ?></span></h4>
-                              <h4>Type: <span class="text-primary"><?php echo $value['Type'] ?></span></h4>
-                              <h4>Name:<span class="text-primary"><?php echo $value['Name'] ?></span></h4>
-                              <h4>Cin: <span class="text-primary"><?php echo $value['CIN'] ?></span></h4>
-                              <h4>Collection Code: <span class="text-primary"><?php echo $value['Collection_Code'] ?></span></h4>
-                          </div>
-                  </div>
-              </div>
-            <?php
-              endforeach;
-            ?>
-          </div>
-          <!--========================-- end show Cards confirme emprunt --=============================-->
-
-
-
         </div>
     </div>
+    <!--========================-- end show Cards confirme reservation --=============================-->
+
     <!-- Team End -->
     <?php
+        // Declaration footer
         include_once "footer.php";
     ?>
-    <script src="/js/main.js"></script>
 </body>

@@ -1,47 +1,29 @@
 /*
 ================== page logIn and Sign Up ======================
 */
-let Reservation = document.querySelector('.Reservation');
-let Emprunt = document.querySelector('.Emprunt');
-let btnReservation = document.querySelector(".btn-Reservation");
-let btnEmprunt = document.querySelector(".btn-Emprunt");
-
-btnReservation.addEventListener('click', function () {
-    Emprunt.classList.add("active");
-    Reservation.classList.remove("active");
-
-    btnReservation.classList.add("btn-primary");
-    btnEmprunt.classList.remove("btn-primary");
-    console.log("Reservation")
-});
-
-btnEmprunt.addEventListener('click', function () {
-    Reservation.classList.add("active");
-    Emprunt.classList.remove("active");
-
-    btnEmprunt.classList.add("btn-primary");
-    btnReservation.classList.remove("btn-primary");
-});
-
 let formLogIn = document.querySelector('.form-logIn');
 let formSignUp = document.querySelector('.form-Signup');
 let btnLogIn = document.querySelector(".btn-login");
 let btnSignUp = document.querySelector(".btn-signup");
 
 btnLogIn.addEventListener('click', function () {
-    formSignUp.classList.add("active");
-    formLogIn.classList.remove("active");
+    formSignUp.classList.add("toggle-view");
+    formLogIn.classList.remove("toggle-view");
 
     btnLogIn.classList.add("btn-primary");
+    btnLogIn.classList.remove("btn-secondary");
+
     btnSignUp.classList.remove("btn-primary");
     btnSignUp.classList.add("btn-secondary");
 });
 
 btnSignUp.addEventListener('click', function () {
-    formLogIn.classList.add("active");
-    formSignUp.classList.remove("active");
+    formLogIn.classList.add("toggle-view");
+    formSignUp.classList.remove("toggle-view");
 
     btnSignUp.classList.add("btn-primary");
+    btnSignUp.classList.remove("btn-secondary");
+
     btnLogIn.classList.remove("btn-primary");
     btnLogIn.classList.add("btn-secondary");
 });

@@ -14,7 +14,12 @@ class login extends Dbh {
 
     if ($stmt->rowCount() == 0) {
       $stmt = null;
-      header("location: ../loginSignUp.php?error=usernorfoundEmail");
+      // header("location: ../loginSignUp.php?error=usernorfoundEmail");
+      echo "<script>Swal.fire(
+        'The Internet?',
+        'That thing is still around?',
+        'question'
+      )</script>";
       exit();
     }
 

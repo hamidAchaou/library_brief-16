@@ -36,7 +36,7 @@ include "/xampp/htdocs/library_brief-16/classes/borrowing.classes.php";
 
 
         <!-- Team Start -->
-    <div class="container-fluid py-5 wow fadeInUp mt-5" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp mt-5 bg-secondary" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
@@ -51,30 +51,37 @@ include "/xampp/htdocs/library_brief-16/classes/borrowing.classes.php";
               foreach ($confirmeEmpruntData as $key => $value) :  
             ?>
 
-
+              <!-- cards emprunt start -->
               <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                   <div class="team-item bg-light rounded overflow-hidden">
-                      <div class="team-img position-relative overflow-hidden">
-                          <img class="img-fluid w-100" src="img/2.jpg" alt="">
-                          <!-- <form method="post" action="" class="team-social">
-                              <a class="btn btn-lg btn-primary btn-lg-square rounded w-50" name="confirmereserve" type="button" href="../library_brief-16/includes/confirme-reservation.inc.php">Confirme</a>
-                          </form> -->
-                              
-                          <form method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>" class="team-social">
-                              <button class="btn btn-lg btn-primary btn-lg-square rounded w-75" name="confirmeEmprunt" type="submit">Confirme Emprunt</button>
-                          </form>
-
-                      </div>
-                          <div class="p-4">
-                              <h3>Title: <span class="text-primary"><?php echo $value['Title'] ?></span></h3>
-                              <h4>Author Name: <span class="text-primary"><?php echo $value['Author_Name'] ?></span></h4>
-                              <h4>Type: <span class="text-primary"><?php echo $value['Type'] ?></span></h4>
-                              <h4>Name:<span class="text-primary"><?php echo $value['Name'] ?></span></h4>
-                              <h4>Cin: <span class="text-primary"><?php echo $value['CIN'] ?></span></h4>
-                              <h4>Collection Code: <span class="text-primary"><?php echo $value['Collection_Code'] ?></span></h4>
-                          </div>
+                        <div class="team-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="img/2.jpg" alt="">
+                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Type"] ?></h6>
+                        </div>
+                        <div class="p-4">
+                            <h2 class="text-center w-100" style="height: 80px;"><?php echo $value['Title'] ?></h2>
+                        </div>
+                        <form class="d-flex justify-content-center mb-3" method="post" action="../library_brief-16/includes/confirme-reservation.inc.php?Reservation_Code=<?php echo $value['Reservation_Code'] ?>">
+                            <button class="btn btn-lg btn-success btn-lg-square rounded w-75" name="confirmeEmprunt" type="submit">Confirme Emprunt</button>
+                        </form>
+                        <div class="card-stats bg-primary">
+                            <div class="stat">
+                                <div class="value"><i class="fa-solid fa-user"></i></div>
+                                <div class="type"><?php echo $value['Name'] ?></div>
+                            </div>
+                            <div class="stat border-stat">
+                                <div class="value"><i class="fa-solid fa-user"></i></sub></div>
+                                <div class="type"><?php echo $value['CIN'] ?></div>
+                            </div>
+                            <div class="stat">
+                                <div class="value"><i class="fa-solid fa-barcode"></i></div>
+                                <div class="type"><?php echo $value['Collection_Code'] ?></div>
+                            </div>
+                        </div>
                   </div>
               </div>
+              <!-- cards emprunt end -->
+
             <?php
               endforeach;
             ?>

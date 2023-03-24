@@ -1,8 +1,7 @@
 <?php
 session_start();
 include "header.php";
-// include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
-include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
+include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
 ?>
 
 
@@ -53,27 +52,39 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                 <?php
                 // get data width class addItems.classes
                 $showItems = new AddItems();
-                $collectionData = $showItems->getCollectionInfo();
-                // loop in data items for display items(collection)
-                foreach ($collectionData as  $key => $value) :                  
+                $collectionDataCount = $showItems->getPageCount();
+    
+                // Pagiantion
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                $itemsPerPage = 6;
+                $PageCount = ceil($collectionDataCount/$itemsPerPage);
+                $beginning = ($page-1) * $itemsPerPage;
+    
+                // get Data items limite 6 row
+                $collectionData = $showItems->getCollectionInfo($beginning, $itemsPerPage);
+                // Display reservations
+                foreach ($collectionData as $key => $value) :                  
                 ?>
-                    <!--=========== starts cards items =======-->
-                    <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px"">
-                        <div class="blog-img position-relative overflow-hidden" style="height: 100px;">
-                            <img class="img-fluid w-100" src="/uploads/6418e35f1f5579.33328166.jpg" alt="">
-                            <a class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
-                                href=""><?php echo $value["Cover_Image"] ?></a>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small>
+                    <!--============ start show cards items ==================-->
+                    <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                        <div class="blog-item bg-light rounded overflow-hidden">
+                            <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
+                                <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $value["Cover_Image"] ?>" alt="">
+                                <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Type"] ?></h6>
                             </div>
-                            <p>Dolor et eos labore stet justo sed est sed sed sed dolor stet amet</p>
-                            <div class="mb-3">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
-                                <small><i class="far fa-calendar-alt"></i><?php echo $value["Edition_Date"] ?></small>
+                            <div class="p-4">
+                                <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
+                                <div class="d-flex justify-content-around flex-wrap">
+                                <div class="w-50">
+                                        <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                                        <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Buy_Date"] ?></small><br>
+                                    </div>
+                                    <div class="w-50">
+                                        <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Pages_Number"] ?></small><br>
+                                        <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["State"] ?></small><br>
+                                    </div>
+                                    <small class="w-100"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
+                                </div>
                             </div>
                             <div class="d-flex mb-3 justify-content-evenly">
                                 <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>"> <i class="fa-solid fa-trash"></i> Delete</button>
@@ -81,7 +92,7 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                             </div>
                         </div>
                     </div>
-                    <!--=========== end cards items =======-->
+                    <!--============ start show cards items ==================-->
 
                     <!--========== start modal Delete =============-->
                     <div class="modal fade" id="deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,12 +119,39 @@ include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
                 <?php
                   endforeach;
                 ?>
+                <!-- start cards pagination -->
+                <div id="pagination" aria-label="...">
+                    <ul class="pagination">
+                        <?php
+                            if ($page > 1) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page-1).'">&laquo; Previous</a></li>';
+                            }
+                            for($i=1; $i<=$PageCount; $i++)  {
+                                if ($page == $i) {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link active' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                } else {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                }
+                            }
+                            if ($page < $PageCount) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page+1).'">Next &raquo;</a></li>';
+                            }
+                        ?>
+                    </ul>
+				</div>
+                <!-- end cards pagination -->
               </div>
             </div>
         <!--============ end show cards items ==================-->
+        <!--===== start includ footer ========-->
+        <?php
+          include "footer.php";
+        ?>
+        <!--===== start includ footer ========-->
 </body>
-    <!--===== start includ footer ========-->
-<?php
-  include "footer.php";
-?>
-<!--===== start includ footer ========-->

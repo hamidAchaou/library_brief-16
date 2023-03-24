@@ -118,31 +118,28 @@ $profileInfo = new ProfileInfoContr();
 
     <!-- info profile Start -->
     <div class="container-xl px-4 mt-3 pt-3">
-        <hr class="mt-0 mb-4">
+        <!-- <hr class="mt-0 mb-4"> -->
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
-                <div class="card mb-4 mb-xl-0">
-                    <div class="card-header"><?php  $profileInfo->fetchName($_SESSION['nickName']); ?></div>
-                    <div class="card-body text-center">
+                <div class="mb-4 mb-xl-0">
+                    <div class=""><?php  $profileInfo->fetchName($_SESSION['nickName']); ?></div>
+                    <div class=" text-center">
                         <!-- Profile picture image-->
                         <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4"><?php  $profileInfo->fetchName($_SESSION['nickName']); ?></div>
-                        <!-- Profile picture upload button-->
-                        <button class="btn btn-primary" type="button">Upload new image</button>
                     </div>
                 </div>
             </div>
             <div class="col-xl-8">
                 <!-- Account details card-->
-                <div class="card mb-4 form-card">
-                    <div class="card-header">Account Details</div>
-                    <div class="card-body">
+                <div class="mb-4">
+                    <div class="">Account Details</div>
+                    <div class="">
                 <!-- start form profile Info -->
-                <form class="form-Signup " action="classes/profileinfo-update.classes.php" method="post">
+                <form class="" action="classes/profileinfo-update.classes.php" method="post">
                     <div class="row g-3">
-
                         <label class="col-12 col-sm-6">
                             Name:
                             <input type="text" name="name" class="form-control bg-white border-0" value="<?php  $profileInfo->fetchName($_SESSION['nickName']); ?>" style="height: 40px;">

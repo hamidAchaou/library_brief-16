@@ -6,7 +6,7 @@ require '/dbh.classes.php';
 class deleteReservation extends Dbh {
 
   public function deleteReserv() {
-    $stmt = $this->connect()->prepare("DELETE FROM reservation WHERE date('Y-m-d H:i:s') > Reservation_Expiration_Date  AND 	Reservation_Code NOT IN (SELECT 	Reservation_Code FROM borrowings)");
+    $stmt = $this->connect()->prepare("DELETE FROM reservation WHERE Reservation_Date < DATE_SUB(NOW(),INTERVAL 24 HOUR) AND 	Reservation_Code NOT IN (SELECT 	Reservation_Code FROM borrowings)");
 
     if (!$stmt->execute()) {
       $stmt = null;

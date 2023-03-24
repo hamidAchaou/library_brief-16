@@ -36,46 +36,27 @@ class AddItems extends Dbh {
     $stmt = null;
   }
 
-  // select data collection in databases
-    // use PascalCase naming convention for classes
-    // public function getCollectionInfo($start, $limit)
-    // {
-    //     // fetch only the required columns
-    //     $stmt = $this->connect()->prepare("SELECT * FROM collection LIMIT ?, OFFSET ?;");
-    //     if (!$stmt->execute(array($start, $limit))) {
-    //         // log the error
-    //         error_log("Error fetching collection data.");
-    //         $stmt = null;
-    //         // show a user-friendly error message
-    //         header("location: ../index.php?error=stmtfailed");
-    //         exit();
-    //     }
-    //     $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     return $collectionData;
-    // }
-
-      // select data collection in databases
-  public function getCollectionInfo() {
-    $stmt = $this->connect()->prepare('SELECT * FROM collection;');
-    if(!$stmt->execute()) {
+  // get Data collection 
+  public function getCollectionInfo($start, $limit) {
+    // fetch only the required columns
+    $stmt = $this->connect()->prepare("SELECT * FROM collection LIMIT ? OFFSET ?;");
+    $stmt->bindParam(1, $limit, PDO::PARAM_INT);
+    $stmt->bindParam(2, $start, PDO::PARAM_INT); // fix the order of the parameters
+    if (!$stmt->execute()) {
+        // log the error
+        error_log("Error fetching collection data.");
         $stmt = null;
-        header("location: ../index.php?erer=stmtfailed");
-        exit();
-    }
-    if ($stmt->rowCount() == 0) {
-        $stmt = null;
-        header("location: ../add-items.admin.php?erer=CollrctionNotFound");
+        // show a user-friendly error message
+        header("location: ../index.php?error=stmtfailed");
         exit();
     }
     $collectionData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
     return $collectionData;
   }
+  
 
     // select data table collection
-    public function getDataCollection()
-    {
+    public function getDataCollection() {
         // fetch only the required columns
         $stmt = $this->connect()->prepare("SELECT * FROM collection;");
         if (!$stmt->execute()) {
@@ -91,8 +72,7 @@ class AddItems extends Dbh {
     }
 
     // get row count data collection
-    public function getDataCollectionRowCount()
-    {
+    public function getDataCollectionRowCount() {
         // fetch only the required columns
         $stmt = $this->connect()->prepare("SELECT * FROM collection;");
         if (!$stmt->execute()) {
@@ -169,22 +149,28 @@ class AddItems extends Dbh {
       $stmt = null;
     }
 
-    // select Reservation_Expiration_Date in table reservation 
-    public function getExpriationDate($Nickname, $current_time,  $incremented_time) {
-      $stmt = $this->connect()->prepare('SELECT Reservation_Expiration_Date FROM reservation WHERE Nickname = ? AND Reservation_Expiration_Date BETWEEN ? AND ?;');
-      if(!$stmt->execute([$Nickname, $current_time, $incremented_time])) {
-          $stmt = null;
-          header("location: items.php?erer=stmtfailed");
+    // Determine the number of reservations made by the subscriber within 24 hours
+    public function getExpirationDate($Nickname, $Status, $current_time, $incremented_time) {
+      $stmt = $this->connect()->prepare('SELECT Reservation_Expiration_Date FROM reservation WHERE Nickname = ? AND Status = ? AND Reservation_Expiration_Date BETWEEN ? AND ?');
+      if (!$stmt->execute([$Nickname, $Status, $current_time, $incremented_time])) {
+          header("Location: items.php?error=stmtfailed");
           exit();
       }
-      // if ($stmt->rowCount() == 0) {
-      //     $stmt = null;
-      //     header("location: items.php?erer=Reservation_Expiration_DateNotFound");
-      //     exit();
-      // }
       $collectionData = $stmt->rowCount();
       return $collectionData;
+  }
+  
+  // get page count
+  public function getPageCount() {
+    $stmt = $this->connect()->prepare('SELECT Collection_Code FROM collection;');
+    if (!$stmt->execute()) {
+        header("Location: items.php?error=stmtfailed");
+        exit();
     }
+    $collectionData = $stmt->rowCount();
+    return $collectionData;
+}
+
 }
 
 ?>

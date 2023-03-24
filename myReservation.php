@@ -45,8 +45,17 @@ session_start();
                 // declaration page class my reservaion
                   include_once "/xampp/htdocs/library_brief-16/classes/myreservation.classes.php";
                   $myreserve = new myReservation();
+
+                  $getMyReservationCount = $myreserve->getMyReservationCount($_SESSION['nickName']);
+
+                  $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;;
+                  $itemsPerPage = 3;
+                  $PageCount = ceil($getMyReservationCount/$itemsPerPage);
+                  $beginning = ($page-1) * $itemsPerPage;
+                  
+
                 //   get Data my reservation
-                  $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName']);
+                  $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName'], $beginning, $itemsPerPage);
                 // loop in data My reservation for show Cards mt Reservation
                   foreach ($dataMyreservation as $key => $value) :
                 ?>
@@ -54,7 +63,7 @@ session_start();
                   <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
                     <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="uploads/<?php echo $value['Type'] ?>" alt="" style="height: 190px;">
+                            <img class="img-fluid w-100" src="uploads/<?php echo $value['Cover_Image'] ?>" alt="" style="height: 190px;">
                             <div class="team-social">
                                 <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><?php echo $value['Type'] ?></i></a>
                             </div>
@@ -75,6 +84,32 @@ session_start();
                 <?php
                   endforeach;
                 ?>
+
+                <div id="pagination" aria-label="...">
+                    <ul class="pagination">
+                        <?php
+                            if ($page > 1) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page-1).'">&laquo; Previous</a></li>';
+                            }
+                            for($i=1; $i<=$PageCount; $i++)  {
+                                if ($page == $i) {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link active' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                } else {
+                                    echo "
+                                    <li class='page-item'>
+                                        <a class='page-link' href='?page=$i'>$i</a>&nbsp;
+                                    </li>";
+                                }
+                            }
+                            if ($page < $PageCount) {
+                                echo '<li class="page-item"><a class="page-link" href="?page='.($page+1).'">Next &raquo;</a></li>';
+                            }
+                        ?>
+                    </ul>
+				</div>
             </div>
         </div>
     </div>

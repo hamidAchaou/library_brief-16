@@ -178,7 +178,7 @@ include "header.php";
                 <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid" src="img/2.jpg" alt="">
+                            <img class="img-fluid" src="uploads/<?php echo $value["Cover_Image"] ?>" alt="">
                             <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
                         </div>
                         <div class="p-4">
@@ -205,17 +205,16 @@ include "header.php";
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">reservation</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirme Reservation</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h1>reservation</h1>
-                            <p>are you sur reserv this?</p>
-                
+                            <h1>are you sure reserve this item!!</h1>
+                            <!-- <p>are you sur reserv this?</p> -->
+                            <button type="button" class="btn btn-success w-100"><a href="includes/reservation.client.classes.php?idcollection=<?php echo $value['Collection_Code'] ?>" class="btn">reserv</a></button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger"><a href="reserv.php?idcollection=<?php echo $value['Collection_Code'] ?>">reserv</a></button>
                         </div>
                         </div>
                     </div>

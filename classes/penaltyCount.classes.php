@@ -16,17 +16,16 @@ class PenaltyCount extends Dbh {
         return $penaltyCountData;
     }
 
-    // add 1 in table client in column 	Penalty Count
     public function insertPenaltyCount($Nickname) {
-        $stmt = $this->connect()->prepare("UPDATE client SET Penalty_Count += 1 WHERE Nickname = ?;");
-
+        $stmt = $this->connect()->prepare("UPDATE client SET Penalty_Count = Penalty_Count + 1 WHERE Nickname = ?;");
+    
         if (!$stmt->execute(array($Nickname))) {
             $stmt = NULL;
             header("location: ../index.php?erer=stmtfailed");
             exit();
         }
-
     }
+    
 }
 
 ?>

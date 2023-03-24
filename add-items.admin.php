@@ -37,7 +37,7 @@ include "header.php";
     <!-- main add items start-->
   <main class=" text-center text-lg-start">
     <section class="">
-        <div class="card mb-3 mt-5 bg-secondary">
+        <div class="mb-3 mt-5 bg-secondary">
             <div class="row g-0 d-flex align-items-center">
                 <div class="col-lg-4 p-0 d-none d-lg-flex">
                     <img src="img/10.jpg" alt="Trendy Pants and Shoes"
@@ -46,8 +46,8 @@ include "header.php";
                 <div class="col-lg-8">
               <div class="card-body py-5 px-md-5 mt-4">
                 
-                <form class=""  action="includes/addItems.inc.php" method="post" enctype="multipart/form-data">
-                    <h3>Add Items</h3>
+                <form action="includes/addItems.inc.php" method="post" enctype="multipart/form-data">
+                    <h3 >Add Items</h3>
                     <div class="d-flex w-100 gap-3">
                         <!-- Name input -->
                         <div class="form-outline mb-4 w-50">

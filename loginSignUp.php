@@ -2,27 +2,28 @@
     include_once "header.php";
 ?>
 
-<body>
+<body class="loginSignupBody">
     <!-- Navbar Start -->
     <!-- <div class="container-fluid position-relative p-0" style="height: 300px;" id="header">
     </div> -->
     <main class="w-100" id="main-login">
         <div class="d-flex log">
             <!-- Comment Form Start -->
-            <div class="rounded p-5 w-50" id="header-login">
+            <div class="rounded p-5 w-50 text-light text-center d-flex justify-content-center align-items-center flex-wrap" id="header-login">
+                <h1 class="w-100">Welcom in your Library <br><span class="h3">chose Your knowlidge</span></h1>
             </div>
             <!-- form sign up -->
-            <div class="rounded p-5 w-75 signupForm" id="form-login">
-                <div class="d-flex justify-content-center mb-5">
+            <div class="rounded p-5 w-75 signupForm" id="loginSigUp">
+                <div class="d-flex justify-content-center gap-1 mb-5">
                     <button class="btn btn-primary btn-login">Log In</button>
-                    <button class="btn btn-signup">Sign Up</button>
+                    <button class="btn btn-signup btn-secondary">Sign Up</button>
                 </div>
                 <h1 class="text-center">Sign Up</h1>
                 <div class="section-title section-title-sm position-relative pb-3 mb-4">
                     <!-- <h3 class="mb-0">Leave A Comment</h3> -->
                 </div>
                 <!-- Sign Up form -->
-                <form class="form-Signup active" action="includes/signup.inc.php" method="post">
+                <form class="form-Signup toggle-view" action="includes/signup.inc.php" method="post">
                     <div class="row g-3">
                         <label class="col-12 col-sm-6">
                             Name:
@@ -100,7 +101,6 @@
                     </div>
                 </form>
                 <!-- End Login Form -->
-
             </div>
         </div>
     </main>
