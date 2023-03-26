@@ -84,8 +84,12 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                         </div>
                         <div class="p-4">
                             <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
-                            <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
-                            <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                            <div class="d-flex flex-wrap">
+                                <small class="me-3 w-50"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small>
+                                <small class="me-3 w-50"><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small>
+                                <small class="me-3 w-50"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small>
+                                <small class="me-3 w-50"><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-center mb-3">
                             <?php

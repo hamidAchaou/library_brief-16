@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "../header.php";
-// <!--============ CONFIRME RESERVATION AND CONFIRME EMPRUNT============ -->
     // Confirm your booking by clicking on button confirm reservation
     if(isset($_POST['confirmereserve'])){
         include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
@@ -25,41 +24,14 @@ include "../header.php";
         echo '
         <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-                <h1 class="w-100">this reservation is confirme</h1><br>
-                <h2><i class="fa-sharp fa-solid fa-check"></i></h2>
+                <h1 class="w-100 d-flex justify-content-center">this reservation is confirme</h1><br>
+                <h2><i class="fa-sharp fa-solid fa-check w-100"></i></h2>
                 <a href="../confirme.rservation.php" class="btn btn-info d-flex justify-content-center w-75 animated slideInLeft">OK</a>
             </div>
         </div>
         ';
     }
-
-    // Confirm your booking by clicking on button confirm reservation
-    if(isset($_POST['confirmeEmprunt'])){
-        include '/xampp/htdocs/library_brief-16/classes/borrowing.classes.php';
-        $confirmeBorrowing = new confirmBorrowing(); //declare classes confirme Borrowing
-
-        $Reservation_Code = $_GET['Reservation_Code'];
-        $NicknameCollection = $confirmeBorrowing->getNicknameCollection($Reservation_Code); 
-
-        // change value status in table borrowings
-        // update status column in table borrowings (From Returned to borrowid)
-        $confirmeBorrowing->confirmeEmpeunt($Reservation_Code);
-
-        // update status column in table collection (From booked_up to Available)
-        $confirmeBorrowing->updatestatusCollection($NicknameCollection[0]['Collection_Code']);
-
-        // div confirme borrowings
-        echo '
-        <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
-          <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
-              <h1 class=" ">this borrowings is confirme</h1>
-              <h2><i class="fa-sharp fa-solid fa-check"></i></h2>
-              <a href="../confirme.emprunt.php" class="btn btn-info d-flex justify-content-center w-75 animated slideInLeft">OK</a>
-          </div>
-        </div>
-        ';
-    }
-
+    // Declaration footer
     include "../footer.php";
 ?>
 

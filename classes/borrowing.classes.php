@@ -3,7 +3,7 @@ include "dbh.classes.php";
 
 class confirmBorrowing extends Dbh {
         // select data in three table (reservation, collection, client) for confirme emprunt
-        public function showResrvEmprunt() {
+        public function showEmprunt($start, $limit) {
             $stmt = $this->connect()->prepare("SELECT * 
             FROM reservation 
             INNER JOIN collection 
@@ -13,16 +13,32 @@ class confirmBorrowing extends Dbh {
             INNER JOIN borrowings
             ON reservation.Reservation_Code  = borrowings.Reservation_Code  
             WHERE borrowings.Status = 'Borrowed';
+            LIMIT :limit OFFSET :start");
+    
+        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    
+        if(!$stmt->execute()) {
+                $stmt = null;
+                header("location: ../home.page.admin.php?erer=stmtfailed");
+                exit();
+            }
+            $confirmeData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $confirmeData;
+        }
+
+        // select All Emprunt
+        public function getEmpruntCount() {
+            $stmt = $this->connect()->prepare("SELECT * 
+            FROM  borrowings
+            WHERE borrowings.Status = 'Borrowed';
             ");
             if(!$stmt->execute()) {
                 $stmt = null;
                 header("location: ../home.page.admin.php?erer=stmtfailed");
                 exit();
             }
-    
-    
-    
-            $confirmeData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $confirmeData = $stmt->rowCount();
             return $confirmeData;
         }
             

@@ -1,8 +1,9 @@
 <?php
 session_start();
-    // get header page
-    include "header.php";
+// get header page
+include "header.php";
 ?>
+
 <body>
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
@@ -43,81 +44,90 @@ session_start();
 
                 <?php
                 // declaration page class my reservaion
-                  include_once "/xampp/htdocs/library_brief-16/classes/myreservation.classes.php";
-                  $myreserve = new myReservation();
+                include_once "/xampp/htdocs/library_brief-16/classes/myreservation.classes.php";
+                $myreserve = new myReservation();
 
-                  $getMyReservationCount = $myreserve->getMyReservationCount($_SESSION['nickName']);
+                $getMyReservationCount = $myreserve->getMyReservationCount($_SESSION['nickName']);
 
-                  $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;;
-                  $itemsPerPage = 3;
-                  $PageCount = ceil($getMyReservationCount/$itemsPerPage);
-                  $beginning = ($page-1) * $itemsPerPage;
-                  
+                $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;;
+                $itemsPerPage = 6;
+                $PageCount = ceil($getMyReservationCount / $itemsPerPage);
+                $beginning = ($page - 1) * $itemsPerPage;
+
 
                 //   get Data my reservation
-                  $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName'], $beginning, $itemsPerPage);
+                $dataMyreservation = $myreserve->getMyReservation($_SESSION['nickName'], $beginning, $itemsPerPage);
                 // loop in data My reservation for show Cards mt Reservation
-                  foreach ($dataMyreservation as $key => $value) :
+                foreach ($dataMyreservation as $key => $value) :
                 ?>
-                  <!-- cards My Reservation start -->
-                  <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="uploads/<?php echo $value['Cover_Image'] ?>" alt="" style="height: 190px;">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><?php echo $value['Type'] ?></i></a>
+                    <!-- cards My Reservation start -->
+                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                        <div class="team-item bg-light rounded overflow-hidden">
+                            <div class="team-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="uploads/<?php echo $value['Cover_Image'] ?>" alt="" style="height: 190px;">
+                                <div class="team-social">
+                                    <a class="btn btn-lg btn-primary btn-lg-square rounded w-75" href=""><?php echo $value['Type'] ?></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class=" py-2">
-                            <h5 class="text-uppercase w-100 text-dark font-weight-bold d-flex h6 justify-content-end"><?php echo $value['Author_Name'] ?></h5>
-                            <h4 class="text-primary text-center mb-1 w-75"><?php echo $value['Title'] ?></h4>
-                            <div class="ps-4 mt-4 d-flex flex-wrap text-light w-100 h-50 justify-content-around bg-success p-4">
-                              <h5 class="text-uppercase"><i class="fa-solid fa-house-circle-check text-dark"></i> <?php echo $value['Type'] ?></h5>
-                              <h5 class="text-uppercase"><i class="fa-solid fa-file-circle-plus text-dark"></i> <?php echo $value['Pages_Number'] ?></h5>
-                              <h5 class="text-uppercase"><i class="fa-solid fa-calendar-days text-dark"></i> <?php echo $value['Reservation_Date'] ?></h5>
+                            <div class="py-2">
+                                <h4 class="text-primary text-center d-flex justify-content-center mb-1 w-75"><?php echo $value['Title'] ?></h4>
+                                <h5 class="text-uppercase w-100 text-dark font-weight-bold d-flex gap-1 h6 m-3"><i class="fa-solid fa-user"></i><?php echo $value['Author_Name'] ?></h5>
+                            </div>
+                            <div class="card-stats bg-info">
+                                <div class="stat">
+                                    <div class=""><i class="fa-solid fa-house-circle-check text-dark"></i></div>
+                                    <div class="type"><?php echo $value['Type'] ?></div>
+                                </div>
+                                <div class="stat border-stat">
+                                    <div class=""><i class="fa-solid fa-file-circle-plus text-dark"></i></sub></div>
+                                    <div class="type"><?php echo $value['Pages_Number'] ?></div>
+                                </div>
+                                <div class="stat">
+                                    <div class=""><i class="fa-solid fa-calendar-days text-dark"></i></div>
+                                    <div class="type"><?php echo $value['Reservation_Date'] ?></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                  <!-- cards My Reservation end -->
+                    <!-- cards My Reservation end -->
 
                 <?php
-                  endforeach;
+                endforeach;
                 ?>
 
                 <div id="pagination" aria-label="...">
-                    <ul class="pagination">
+                    <ul class="pagination d-flex justify-content-center">
                         <?php
-                            if ($page > 1) {
-                                echo '<li class="page-item"><a class="page-link" href="?page='.($page-1).'">&laquo; Previous</a></li>';
-                            }
-                            for($i=1; $i<=$PageCount; $i++)  {
-                                if ($page == $i) {
-                                    echo "
+                        if ($page > 1) {
+                            echo '<li class="page-item"><a class="page-link" href="?page=' . ($page - 1) . '">&laquo; Previous</a></li>';
+                        }
+                        for ($i = 1; $i <= $PageCount; $i++) {
+                            if ($page == $i) {
+                                echo "
                                     <li class='page-item'>
                                         <a class='page-link active' href='?page=$i'>$i</a>&nbsp;
                                     </li>";
-                                } else {
-                                    echo "
+                            } else {
+                                echo "
                                     <li class='page-item'>
                                         <a class='page-link' href='?page=$i'>$i</a>&nbsp;
                                     </li>";
-                                }
                             }
-                            if ($page < $PageCount) {
-                                echo '<li class="page-item"><a class="page-link" href="?page='.($page+1).'">Next &raquo;</a></li>';
-                            }
+                        }
+                        if ($page < $PageCount) {
+                            echo '<li class="page-item"><a class="page-link" href="?page=' . ($page + 1) . '">Next &raquo;</a></li>';
+                        }
                         ?>
                     </ul>
-				</div>
+                </div>
             </div>
         </div>
     </div>
     <!-- show cards my reservation  End -->
 
-    
-<!-- foooter start -->
-<?php
-  include "footer.php";
-?>
-<!-- foooter end -->
+
+    <!-- foooter start -->
+    <?php
+    include "footer.php";
+    ?>
+    <!-- foooter end -->

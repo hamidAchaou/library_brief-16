@@ -1,22 +1,23 @@
 
 <?php
 include "header.php";
-include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
+include "/xampp/htdocs/library_brief-16/classes/borrowing.classes.php";
+// Declaration Class Confirme Borrowing
+$confirmeEmprunt = new confirmBorrowing();
+$empruntCount = $confirmeEmprunt->getEmpruntCount();
 
-      $confirme = new confirmReservation();
-      $confirmeData = $confirme->getReservationInfo();
+              // Pagination
+              $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+              $itemsPerPage = 1;
+              $PageCount = ceil($empruntCount / $itemsPerPage);
+              $beginning = ($page - 1) * $itemsPerPage;
+              $confirmEmpruntData = $confirmeEmprunt->showEmprunt($beginning, $itemsPerPage);
 
-      // print_r(count($confirmeData));
+            //   print_r($confirmEmpruntData);
 
-      $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;;
-      $itemsPerPage = 2;
-      $PageCount = ceil(count($confirmeData)/$itemsPerPage);
-      $beginning = ($page-1) * $itemsPerPage;
-
-      // echo $beginning . "<br>";
-      // echo $PageCount;
-      foreach ($confirmeData as $key => $value) :  
-            echo $value['Title'] . "<br>";
+            foreach ($confirmEmpruntData as $reservation) :
+                echo $reservation['Title'] . "br";
+            endforeach;
 ?>
 <div id="pagination" aria-label="...">
   <ul class="pagination">
@@ -54,30 +55,3 @@ include_once "footer.php";
 
 
 
-
-
-
-                    <!--=========== starts cards items =======-->
-                    <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px"">
-                        <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $value["Cover_Image"] ?>" alt="">
-                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small>
-                            </div>
-                            <p>Dolor et eos labore stet justo sed est sed sed sed dolor stet amet</p>
-                            <div class="mb-3">
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
-                                <small><i class="far fa-calendar-alt"></i><?php echo $value["Edition_Date"] ?></small>
-                            </div>
-                            <div class="d-flex mb-3 justify-content-evenly">
-                                <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>"> <i class="fa-solid fa-trash"></i> Delete</button>
-                                <button type="button" class="btn btn-info"><a href="updateItems.php?idcollection=<?php echo $value['Collection_Code'] ?>" class="text-decoration-none text-light"><i class="fa-sharp fa-solid fa-pen-to-square text-light"></i> Edit</a></button>                            
-                            </div>
-                        </div>
-                    </div>
-                    <!--=========== end cards items =======-->

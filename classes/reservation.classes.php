@@ -12,7 +12,7 @@ class confirmReservation extends Dbh {
         INNER JOIN client ON reservation.Nickname = client.Nickname
         WHERE reservation.Status = 'Reservation_Done';");
 
-        if(!$stmt->execute(array())) {
+        if(!$stmt->execute()) {
             $stmt = null;
             header("location: ../confirme.reservation.php?erer=stmtfailed");
             exit();
@@ -20,43 +20,48 @@ class confirmReservation extends Dbh {
         $confirmeData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $confirmeData;
     }
-        // select data in three table (reservation, collection, client) for confirme reservation limit 6 cards
-        public function getReservationInfoLimit($start, $limit) {
-            $stmt = $this->connect()->prepare("SELECT * 
-                FROM reservation 
-                INNER JOIN collection ON reservation.Collection_Code = collection.Collection_Code 
-                INNER JOIN client ON reservation.Nickname = client.Nickname
-                WHERE reservation.Status = 'Reservation_Done'
-                LIMIT :limit OFFSET :start");
-        
-            $stmt->bindParam(':start', $start, PDO::PARAM_INT);
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-        
-            if(!$stmt->execute()) {
-                $stmt = null;
-                header("location: ../confirme.reservation.php?error=stmtfailed");
-                exit();
-            }
-        
-            $confirmeData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $confirmeData;
+
+    // select data in three table (reservation, collection, client) for confirme reservation limit 6 cards
+    public function getReservationInfoLimit($start, $limit) {
+        $stmt = $this->connect()->prepare("SELECT * 
+            FROM reservation 
+            INNER JOIN collection ON reservation.Collection_Code = collection.Collection_Code 
+            INNER JOIN client ON reservation.Nickname = client.Nickname
+            WHERE reservation.Status = 'Reservation_Done'
+            LIMIT :limit OFFSET :start");
+    
+        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    
+        if(!$stmt->execute()) {
+            $stmt = null;
+            header("location: ../confirme.reservation.php?error=stmtfailed");
+            exit();
         }
+    
+        $confirmeData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $confirmeData;
+    }
         
 
     // methode add data in table borrowings (confirme reservation)
     public function insertborrowings($Borrowing_Date, $Borrowing_Return_Date, $Nickname , $Collection_Code, $Reservation_Code) {
-        $stmt = $this->connect()->prepare("INSERT INTO borrowings(Borrowing_Date, Borrowing_Return_Date, Nickname  , Collection_Code, Reservation_Code) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $this->connect()->prepare("INSERT INTO borrowings(Borrowing_Date, Borrowing_Return_Date, Nickname  , Collection_Code, Reservation_Code)
+         VALUES (?, ?, ?, ?, ?)");
         if (!$stmt->execute(array($Borrowing_Date, $Borrowing_Return_Date, $Nickname , $Collection_Code, $Reservation_Code))) {
           $stmt = null;
           header("location: items.php?erer=stmtfailed");
           exit();
         }
         $stmt = null;
-      }
+    }
 
+   
     // select Nick name and collection code
     public function getNicknameCollection($Reservation_Code) {
-        $stmt = $this->connect()->prepare("SELECT Collection_Code, Nickname FROM reservation WHERE Reservation_Code = ?");
+        $stmt = $this->connect()->prepare("SELECT Collection_Code, Nickname 
+        FROM reservation 
+        WHERE Reservation_Code = ?");
 
         if(!$stmt->execute([$Reservation_Code])) {
             $stmt = null;
@@ -85,8 +90,5 @@ class confirmReservation extends Dbh {
         }
         $stmt = null;
     }
-
-
-
 }
 ?>
