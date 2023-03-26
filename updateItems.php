@@ -46,10 +46,10 @@ session_start();
     <!-- Navbar & Carousel End -->
     <main class=" text-center text-lg-start">
         <section class="">
-            <div class="card mb-3 mt-5 bg-secondary">
+            <div class="mb-3 mt-5 bg-secondary">
                 <div class="row g-0 d-flex align-items-center">
                     <div class="col-lg-4 p-0 d-none d-lg-flex">
-                        <img src="/uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" alt="Trendy Pants and Shoes"
+                        <img src="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" alt="Trendy Pants and Shoes"
                         class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 p-0" />
                     </div>
                     <div class="col-lg-8">
@@ -61,8 +61,7 @@ session_start();
         
                     <label class="col-12 col-sm-6">
                     Cover Image
-                        <img src="/uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" alt="" srcset="">
-                        <input type="file" name="Cover_Image" class="form-control" value="/uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" placeholder="enter your Cover Image" style="height: 40px;">
+                        <input type="file" name="Cover_Image" class="form-control" value="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" placeholder="enter your Cover Image" style="height: 40px;">
                     </label>
 
                     <label class="col-12 col-sm-6">
