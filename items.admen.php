@@ -66,10 +66,10 @@
                         foreach ($collectionData as $key => $value) :
                         ?>
                             <!--============ start show cards items ==================-->
-                            <div class="wow slideInUp " data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                            <div class="wow slideInUp " data-wow-delay="0.3s" style="width: 19rem; height: 395px">
                                 <div class="blog-item bg-light rounded overflow-hidden">
                                     <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                                        <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $value["Cover_Image"] ?>" alt="">
+                                        <img class="img-fluid w-100" src="../library_brief-16/uploads/<?php echo $value["Cover_Image"] ?>" alt="">
                                         <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Type"] ?></h6>
                                     </div>
                                     <div class="p-4">
@@ -86,7 +86,10 @@
                                             <small class="w-100"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
                                         </div>
                                     </div>
-
+                                    <div class="d-flex mb-3 justify-content-evenly">
+                                        <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</button>
+                                        <button type="button" class="btn btn-info"><a href="moreDetails.php?idcollection=<?php echo $value['Collection_Code'] ?>">edite</a></button>                            
+                                    </div>
                                 </div>
                             </div>
                             <!--============ start show cards items ==================-->

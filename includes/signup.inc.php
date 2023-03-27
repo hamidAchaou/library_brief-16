@@ -1,4 +1,5 @@
 <?php 
+require_once "../header.php";
     if (isset($_POST['signupSubmit'])) {
 
         // $name = htmlspecialchars($_POST("name"), ENT_QUOTES, 'UTF-8');
@@ -24,15 +25,15 @@
         $signup->signupUser();
 
         // going to back to front page
-        header('location: ../loginSignUp.php?rerror=none'); 
-        echo "<script>Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })</script>";
-
-    
+        echo '
+        <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
+          <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
+              <h1 class="w-100 d-flex justify-content-center">Your account has been registered successfully</h1>
+              <h2 class="w-100 d-flex justify-content-center text.light"><i class="fa-sharp fa-solid fa-check text-light h2 border border-success rounded-circle bg-success"></i></h2>
+              <a href="../loginSignUp.php" class="btn btn-info d-flex justify-content-center w-75 animated slideInLeft">OK</a>
+          </div>
+        </div>
+        ';
     }
+    include_once "../footer.php";
 ?>

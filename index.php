@@ -159,7 +159,7 @@ include "header.php";
                 <h5 class="fw-bold text-light text-uppercase pt-3">chose your Knowledge</h5>
             </div>
 
-            <div class=" g-5">
+            <div class="g-5">
                 <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
             <?php
                 include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
@@ -178,7 +178,7 @@ include "header.php";
                 <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid" src="uploads/<?php echo $value["Cover_Image"] ?>" alt="">
+                            <img class="img-fluid w-100" src="uploads/<?php echo $value["Cover_Image"] ?>" alt="">
                             <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
                         </div>
                         <div class="p-4">

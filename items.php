@@ -70,7 +70,6 @@ include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
                         include_once "/xampp/htdocs/library_brief-16/includes/display-collectionCards.inc.php";
                     }
                     ?>
-
                 </div>
             </div>
         </div>

@@ -61,7 +61,7 @@ include "/xampp/htdocs/library_brief-16/classes/reservation.classes.php";
               <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
                   <div class="team-item bg-light rounded overflow-hidden">
                         <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="uploads/<?php echo $reservation['Cover_Image'] ?>" alt="">
+                            <img class="img-fluid w-100" src="uploads/<?php echo $reservation['Cover_Image'] ?>" alt="" style="height: 300px">
                             <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $reservation["Type"] ?></h6>
                         </div>
                         <div class="p-4">

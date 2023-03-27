@@ -59,16 +59,16 @@ include "header.php";
               foreach ($confirmEmpruntData as $reservation) :
                 ?>
                     <!-- cards emprunt start -->
-                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s" >
                         <div class="team-item bg-light rounded overflow-hidden">
                             <div class="team-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="uploads/<?php echo $reservation['Cover_Image'] ?>" alt="" style="height: 280px;">
+                                <img class="img-fluid w-100" src="uploads/<?php echo $reservation['Cover_Image'] ?>" alt="" style="height: 260px;">
                                 <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $reservation["Type"] ?></h6>
                             </div>
-                            <div class="p-4">
-                                <h2 class="text-center w-100" style="height: 80px;"><?php echo $reservation['Title'] ?></h2>
+                            <div class="p-2">
+                                <h2 class="text-center w-100" style="height: 60px;"><?php echo $reservation['Title'] ?></h2>
                             </div>
-                            <form class="d-flex justify-content-center mb-3" method="post" action="includes/confirme-Borrowing.inc.php?Reservation_Code=<?php echo $reservation['Reservation_Code'] ?>">
+                            <form class="d-flex justify-content-center mb-2" method="post" action="includes/confirme-Borrowing.inc.php?Reservation_Code=<?php echo $reservation['Reservation_Code'] ?>">
                                 <button class="btn btn-lg btn-success btn-lg-square rounded w-75" name="confirmeEmprunt" type="submit">Confirme Emprunt</button>
                             </form>
                             <div class="card-stats bg-info">

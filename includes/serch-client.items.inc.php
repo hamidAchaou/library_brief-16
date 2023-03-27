@@ -14,7 +14,7 @@ foreach ($serchData as $serchincollection) :
     <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
         <div class="blog-item bg-light rounded overflow-hidden">
             <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $serchincollection["Cover_Image"] ?>" alt="">
+                <img class="img-fluid w-100" src="../library_brief-16/uploads/<?php echo $serchincollection["Cover_Image"] ?>" alt="">
                 <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $serchincollection["Status"] ?></h6>
             </div>
             <div class="p-2">

@@ -18,7 +18,7 @@ foreach ($collectionData as $collectionData) :
     <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
         <div class="blog-item bg-light rounded overflow-hidden">
             <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                <img class="img-fluid" src="../library_brief-16/uploads/<?php echo $collectionData["Cover_Image"] ?>" alt="">
+                <img class="img-fluid w-100" src="../library_brief-16/uploads/<?php echo $collectionData["Cover_Image"] ?>" alt="">
                 <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $collectionData["Status"] ?></h6>
             </div>
             <div class="p-2">
@@ -36,7 +36,7 @@ foreach ($collectionData as $collectionData) :
                     echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
                 } else {
                 ?>
-                    <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
+                    <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $collectionData['Collection_Code'] ?>">reservation</button>
                 <?php
                 };
                 ?>
@@ -56,7 +56,7 @@ foreach ($collectionData as $collectionData) :
                 <div class="modal-body">
                     <h1>are you sure reserve this item!!</h1>
                     <!-- <p>are you sur reserv this?</p> -->
-                    <button type="button" class="btn btn-success w-100"><a href="includes/reservation.client.classes.php?idcollection=<?php echo $value['Collection_Code'] ?>" class="btn">reserv</a></button>
+                    <button type="button" class="btn btn-success w-100"><a href="includes/reservation.client.classes.php?idcollection=<?php echo $collectionData['Collection_Code'] ?>" class="btn">reserv</a></button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -68,7 +68,7 @@ foreach ($collectionData as $collectionData) :
 <?php
 endforeach;
 ?>
-<div id="pagination" aria-label="...">
+<div class="pagination d-flex justify-content-center w-100" aria-label="...">
     <ul class="pagination">
         <?php
         if ($page > 1) {
@@ -93,3 +93,4 @@ endforeach;
         ?>
     </ul>
 </div>
+

@@ -40,7 +40,7 @@ include "header.php";
                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Search</a>
                 </label>
             </div>
-            <div class="row g-5">
+            <div class="row justify-content-center g-5">
 
                 <?php
                 // declaration page class my reservaion
@@ -61,7 +61,7 @@ include "header.php";
                 foreach ($dataMyreservation as $key => $value) :
                 ?>
                     <!-- cards My Reservation start -->
-                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                    <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s" style="width: 21rem; height: 350px">
                         <div class="team-item bg-light rounded overflow-hidden">
                             <div class="team-img position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="uploads/<?php echo $value['Cover_Image'] ?>" alt="" style="height: 190px;">
