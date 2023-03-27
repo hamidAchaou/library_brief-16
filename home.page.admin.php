@@ -1,9 +1,9 @@
 <?php
 session_start();
+
+// includ header
 include "header.php";
 ?>
-
-
 
 <body>
 
@@ -78,7 +78,7 @@ include "header.php";
     <!-- Navbar & Carousel End -->
 
 
-    <!-- Facts Start -->
+    <!-- Header Start -->
     <div class="container-fluid facts py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
             <div class="row gx-0">
@@ -137,8 +137,7 @@ include "header.php";
             </div>
         </div>
     </div>
-    </div>
-    <!-- Facts Start -->
+    <!-- Header Start -->
 
     <!-- About Start -->
     <div class="container-fluid py-5 wow fadeInUp" id="aboutLibrary" data-wow-delay="0.1s">
@@ -183,6 +182,7 @@ include "header.php";
         </div>
     </div>
     <!-- About End -->
+
     <!-- start footer -->
     <?php
     include "footer.php";

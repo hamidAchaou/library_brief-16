@@ -2,13 +2,17 @@
 session_start();
 // check Penalty count 
 include "/xampp/htdocs/library_brief-16/classes/penaltyCount.classes.php";
-$PenaltyCount = new PenaltyCount();
-$getBorrowingReturnDate = $PenaltyCount->getBorrowingReturnDate($_SESSION['nickName']);
-$today = date("Y-m-d");
 
-foreach($getBorrowingReturnDate as $key => $value) {
+// declaration class Penalty Count
+$PenaltyCount = new PenaltyCount();
+// get Borrowing Return Date
+$getBorrowingReturnDate = $PenaltyCount->getBorrowingReturnDate($_SESSION['nickName']);
+$today = date("Y-m-d"); //get date of this day
+
+// lop in borrowing Return Date In order to see whether the element was returned or not 
+foreach ($getBorrowingReturnDate as $borrowingReturnDate) {
     // Compare today's date with the repeat date, and if today's date is greater than the number of one penalty
-    if ($today > $value['Borrowing_Return_Date'] && $value['Status'] === 'Borrowed') {
+    if ($today > $borrowingReturnDate['Borrowing_Return_Date'] && $borrowingReturnDate['Status'] === 'Borrowed') {
         $PenaltyCount->insertPenaltyCount($_SESSION['nickName']);
     }
 }
@@ -17,10 +21,7 @@ foreach($getBorrowingReturnDate as $key => $value) {
 include "header.php";
 ?>
 
-
-
 <body>
-
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -28,9 +29,6 @@ include "header.php";
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="index.php" class="nav-item nav-link text-info selectNav">Home</a>
@@ -58,8 +56,7 @@ include "header.php";
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">with Book You</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Satisfy the thirst of knowledge
                             </h1>
-                            <a href="items.php"
-                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation
+                            <a href="items.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation
                             </a>
                         </div>
                     </div>
@@ -71,8 +68,7 @@ include "header.php";
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">with Book You</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Satisfy the thirst of knowledge
                             </h1>
-                            <a href="items.php"
-                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation</a>
+                            <a href="items.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Reservation</a>
                         </div>
                     </div>
                 </div>
@@ -89,15 +85,13 @@ include "header.php";
     </div>
     <!-- Navbar & Carousel End -->
 
-    <!-- Facts Start -->
+    <!-- Header Start -->
     <div class="container-fluid facts py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
             <div class="row gx-0">
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.1s">
-                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa-solid fa-books-medical"></i>
                         </div>
                         <div class="ps-4">
@@ -107,10 +101,8 @@ include "header.php";
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa-solid fa-compact-disc"></i>
                         </div>
                         <div class="ps-4">
@@ -120,10 +112,8 @@ include "header.php";
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa fa-award text-primary"></i>
                         </div>
                         <div class="ps-4">
@@ -133,10 +123,8 @@ include "header.php";
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa-solid fa-compact-disc"></i>
                         </div>
                         <div class="ps-4">
@@ -148,10 +136,9 @@ include "header.php";
             </div>
         </div>
     </div>
-    </div>
-    <!-- Facts Start -->
+    <!-- Header Start -->
 
-    <!-- show random items for reservation Start -->
+    <!--============ show random items for reservation Start ========================-->
     <div class="wow fadeInUp" data-wow-delay="0.1s">
         <div class="py-3 bg-secondary">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -161,90 +148,87 @@ include "header.php";
 
             <div class="g-5">
                 <div class="d-flex flex-wrap gap-5 justify-content-center slideInUp" data-wow-delay="0.3s">
-            <?php
-                include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
-                //   get data width class addItems.classes
-                $showItems = new AddItems();
-                $collectionData = $showItems->getThreeItems();
+                    <?php
+                    include "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
+                    //   get data width class addItems.classes
+                    $showItems = new AddItems();
+                    $collectionData = $showItems->getThreeItems();
 
-                // print_r($collectionData);
+                    // print_r($collectionData);
 
-                foreach ($collectionData as  $key => $value) :
-                    $collection_code = $value["Collection_Code"];
-                  
-            ?>
+                    foreach ($collectionData as  $key => $value) :
+                        $collection_code = $value["Collection_Code"];
 
-                <!-- <div class="blog-item bg-light rounded overflow-hidden card" style="width: 19rem; height: 350px""> -->
-                <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
-                            <img class="img-fluid w-100" src="uploads/<?php echo $value["Cover_Image"] ?>" alt="">
-                            <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
-                                <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                    ?>
+                        <!-- Cards Items start -->
+                        <div class="wow slideInUp mb-5" data-wow-delay="0.3s" style="width: 19rem; height: 350px">
+                            <div class="blog-item bg-light rounded overflow-hidden">
+                                <div class="blog-img position-relative overflow-hidden" style="height: 200px;">
+                                    <img class="img-fluid w-100" src="uploads/<?php echo $value["Cover_Image"] ?>" alt="">
+                                    <h6 class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4" href=""><?php echo $value["Status"] ?></h6>
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="mb-3"><?php echo $value["Title"] ?></h4>
+                                    <small class="me-3"><i class="far fa-user text-primary me-2"></i><?php echo $value["Author_Name"] ?></small><br>
+                                    <small><i class="far fa-calendar-alt text-primary me-2"></i><?php echo $value["Edition_Date"] ?></small><br>
+                                </div>
+                                <div class="d-flex justify-content-center mb-3">
+                                    <?php
+                                    if ($value["Status"] !== "Available") {
+                                        echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
+                                    } else {
+                                    ?>
+                                        <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
+                                    <?php
+                                    };
+                                    ?>
+                                </div>
                             </div>
-                            <div  class="d-flex justify-content-center mb-3">
-                                <?php
-                                  if ($value["Status"] !== "Available") {
-                                    echo "<button type='button' class='btn btn-secondary w-75'>this Items is bokid up</button>";
-                                  } else {
-                                ?>
-                                <button type="button" class="btn btn-info w-75" data-bs-toggle="modal" data-bs-target="#reserv<?php echo $value['Collection_Code'] ?>">reservation</button>
-                                <?php
-                                };
-                                ?>
-                            </div>
-                    </div>
-                </div>
-                
-                <!--========== start modal reservation =============-->
-                <div class="modal fade" id="reserv<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirme Reservation</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <h1>are you sure reserve this item!!</h1>
-                            <!-- <p>are you sur reserv this?</p> -->
-                            <button type="button" class="btn btn-success w-100"><a href="includes/reservation.client.classes.php?idcollection=<?php echo $value['Collection_Code'] ?>" class="btn">reserv</a></button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <!--========== end modal reservation =============-->
+                        <!-- Cards Items End -->
 
-                <?php
-                  endforeach;
-                ?>
+                        <!--========== start modal reservation =============-->
+                        <div class="modal fade" id="reserv<?php echo $value['Collection_Code'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirme Reservation</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1>are you sure reserve this item!!</h1>
+                                        <!-- <p>are you sur reserv this?</p> -->
+                                        <button type="button" class="btn btn-success w-100"><a href="includes/reservation.client.classes.php?idcollection=<?php echo $value['Collection_Code'] ?>" class="btn">reserv</a></button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--========== end modal reservation =============-->
+
+                    <?php
+                    endforeach;
+                    ?>
                 </div>
                 <div class="w-100 h-25 d-flex align-items-center justify-content-center pt-5 mt-3">
-                <a href="items.php"
-                    class="btn btn-primary py-md-2 px-md-5 me-3 animated slideInLeft">Se All items
-                </a>
+                    <!-- button  See All Items-->
+                    <a href="items.php" class="btn btn-primary py-md-2 px-md-5 me-3 animated slideInLeft">See All items
+                    </a>
                 </div>
-
             </div>
         </div>
     </div>
     <!-- show random items for reservation end -->
-
-
+    
     <!-- About Start -->
     <div class="container-fluid py-5 wow fadeInUp" id="aboutLibrary" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
-                            src="img/10.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/10.jpg" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -266,8 +250,7 @@ include "header.php";
                         </div>
                     </div>
                     <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded"
-                            style="width: 60px; height: 60px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
                             <i class="fa fa-phone-alt text-white"></i>
                         </div>
                         <div class="ps-4">
@@ -283,340 +266,9 @@ include "header.php";
     </div>
     <!-- About End -->
 
-
-    <!-- Features Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Why Choose Us</h5>
-                <h1 class="mb-0">We Are Here to Grow Your Business Exponentially</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-cubes text-white"></i>
-                            </div>
-                            <h4>Best In Industry</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                        </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-award text-white"></i>
-                            </div>
-                            <h4>Award Winning</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="img/feature.jpg" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-users-cog text-white"></i>
-                            </div>
-                            <h4>Professional Staff</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                        </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
-                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="fa fa-phone-alt text-white"></i>
-                            </div>
-                            <h4>24/7 Support</h4>
-                            <p class="mb-0">Magna sea eos sit dolor, ipsum amet lorem diam dolor eos et diam dolor</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Features Start -->
-
-    <!-- Pricing Plan Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Pricing Plans</h5>
-                <h1 class="mb-0">We are Offering Competitive Prices for Our Clients</h1>
-            </div>
-            <div class="row g-0">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="bg-light rounded">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Basic Plan</h4>
-                            <small class="text-uppercase">For Small Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i class="fa fa-times text-danger pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i class="fa fa-times text-danger pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="bg-white rounded shadow position-relative" style="z-index: 1;">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Standard Plan</h4>
-                            <small class="text-uppercase">For Medium Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>99.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i class="fa fa-times text-danger pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="bg-light rounded">
-                        <div class="border-bottom py-4 px-5 mb-4">
-                            <h4 class="text-primary mb-1">Advanced Plan</h4>
-                            <small class="text-uppercase">For Large Size Business</small>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <h1 class="display-5 mb-3">
-                                <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>149.00<small
-                                    class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Month</small>
-                            </h1>
-                            <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Responsive Layout</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>Cross-browser Support</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <a href="" class="btn btn-primary py-2 px-4 mt-4">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Pricing Plan End -->
-
-    <!-- Quote Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-7">
-                    <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">Request A Quote</h5>
-                        <h1 class="mb-0">Need A Free Quote? Please Feel Free to Contact Us</h1>
-                    </div>
-                    <div class="row gx-3">
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
-                            <h5 class="mb-4"><i class="fa fa-reply text-primary me-3"></i>Reply within 24 hours</h5>
-                        </div>
-                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
-                            <h5 class="mb-4"><i class="fa fa-phone-alt text-primary me-3"></i>24 hrs telephone support</h5>
-                        </div>
-                    </div>
-                    <p class="mb-4">Eirmod sed tempor lorem ut dolores. Aliquyam sit sadipscing kasd ipsum. Dolor ea et dolore et at sea ea at dolor, justo ipsum duo rebum sea invidunt voluptua. Eos vero eos vero ea et dolore eirmod et. Dolores diam duo invidunt lorem. Elitr ut dolores magna sit. Sea dolore sanctus sed et. Takimata takimata sanctus sed.</p>
-                    <div class="d-flex align-items-center mt-2 wow zoomIn" data-wow-delay="0.6s">
-                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                            <i class="fa fa-phone-alt text-white"></i>
-                        </div>
-                        <div class="ps-4">
-                            <h5 class="mb-2">Call to ask any question</h5>
-                            <h4 class="text-primary mb-0">+012 345 6789</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="bg-primary rounded h-100 d-flex align-items-center p-5 wow zoomIn" data-wow-delay="0.9s">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-xl-12">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;">
-                                </div>
-                                <div class="col-12">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;">
-                                </div>
-                                <div class="col-12">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control bg-light border-0" rows="3" placeholder="Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Request A Quote</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Quote End -->
-
-    <!-- Testimonial Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Testimonial</h5>
-                <h1 class="mb-0">What Our Clients Say About Our Digital Services</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-3.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Testimonial End -->
-
-
-    <!-- Team Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
-                <h1 class="mb-0">Professional Stuffs Ready to Help Your Business</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
-                    <div class="team-item bg-light rounded overflow-hidden">
-                        <div class="team-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <h4 class="text-primary">Full Name</h4>
-                            <p class="text-uppercase m-0">Designation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Team End -->
-
-
-    <!-- Vendor Start -->
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5 mb-5">
-            <div class="bg-white">
-                <div class="owl-carousel vendor-carousel">
-                    <img src="img/vendor-1.jpg" alt="">
-                    <img src="img/vendor-2.jpg" alt="">
-                    <img src="img/vendor-3.jpg" alt="">
-                    <img src="img/vendor-4.jpg" alt="">
-                    <img src="img/vendor-5.jpg" alt="">
-                    <img src="img/vendor-6.jpg" alt="">
-                    <img src="img/vendor-7.jpg" alt="">
-                    <img src="img/vendor-8.jpg" alt="">
-                    <img src="img/vendor-9.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Vendor End -->
-
-
- <?php
+    <!--  Footer start -->
+    <?php
     include "footer.php";
- ?>
+    ?>
+    <!-- footer end -->
+</body>

@@ -1,18 +1,12 @@
 <?php
 session_start();
-    include "header.php";
-    $collection_id = $_GET['idcollection'];
-    include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
+include "header.php"; // includ header
+$collection_id = $_GET['idcollection']; // get collection id
 
-    // include "/xampp/htdocs/library_brief-16/items.admen.php";
-        $collectionInfo = new collectionInfoContr();
-    // echo $collection_id;
-    // print_r($collectionInfo);
-
-    // $profileInfo->fetchTitle($collection_id);
-    // $collectionInfo->fetchAuthor_Name($collection_id);
+include "/xampp/htdocs/library_brief-16/classes/showItems-vew.classes.php";
+// declaration class collectionInfoContr
+$collectionInfo = new collectionInfoContr();
 ?>
-
 
 <body>
     <!--================ navbar start ================== -->
@@ -43,74 +37,74 @@ session_start();
         </div>
     </nav>
     <!--================ navbar end ================== -->
-    <!-- Navbar & Carousel End -->
+    <!--===================== start main update collection ==============-->
     <main class=" text-center text-lg-start">
         <section class="">
             <div class="mb-3 mt-5 bg-secondary">
                 <div class="row g-0 d-flex align-items-center">
                     <div class="col-lg-4 p-0 d-none d-lg-flex">
-                        <img src="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" alt="Trendy Pants and Shoes"
-                        class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 p-0" />
+                        <img src="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" alt="Trendy Pants and Shoes" class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5 p-0" />
                     </div>
                     <div class="col-lg-8">
-                    <div class="card-body py-5 px-md-5 mt-4">
-                    <h2 class="">Update Items</h2>
-                    
-                <form class="form-Signup pt-5" action="includes/updateItems.inc.php?collection_id=<?php echo $collection_id ?>" method="post" enctype="multipart/form-data">
-                <div class="row g-3">
-        
-                    <label class="col-12 col-sm-6">
-                    Cover Image
-                        <input type="file" name="Cover_Image" class="form-control" value="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" placeholder="enter your Cover Image" style="height: 40px;">
-                    </label>
+                        <div class="card-body py-5 px-md-5 mt-4">
+                            <h2 class="">Update Items</h2>
+                            <!-- form update collection -->
+                            <form class="form-Signup pt-5" action="includes/updateItems.inc.php?collection_id=<?php echo $collection_id ?>" method="post" enctype="multipart/form-data">
+                                <div class="row g-3">
 
-                    <label class="col-12 col-sm-6">
-                    Title:
-                        <input type="text" name="Title" class="form-control" placeholder="Your Title" value="<?php echo $collectionInfo->fetchTitle($collection_id); ?>" style="height: 40px;">
-                    </label>
-        
-                    <label class="col-12 col-sm-6">
-                    Author_Name:
-                        <input type="text" name="Author_Name" class="form-control" value="<?php echo $collectionInfo->fetchAuthor_Name($collection_id); ?>" placeholder="Your Author_Name" style="height: 40px;">
-                    </label>
-        
-                    <label class="col-12 col-sm-6">
-                    Edition Date:
-                        <input type="date" name="Edition_Date" class="form-control" value="<?php echo $collectionInfo->fetchEdition_Date($collection_id); ?>" placeholder="Your Edition_Date" style="height: 40px;">
-                    </label>
-        
-                    <label class="col-12 col-sm-6">
-                    Buy Date
-                        <input type="date" name="Buy_Date" class="form-control" value="<?php echo $collectionInfo->fetchBuy_Date($collection_id); ?>" placeholder="Buy_Date" style="height: 40px;">
-                    </label>
-        
-                    <label class="col-6 col-sm-6">
-                    state:
-                        <input type="text" name="state" class="form-control" value="<?php echo $collectionInfo->fetchState($collection_id); ?>" placeholder="your Status" style="height: 40px;">
-                    </label>
-                    <label class="col-6 col-sm-6">
-                    Type:
-                        <input type="text" name="Type" class="form-control" value="<?php echo $collectionInfo->fetchType($collection_id); ?>" placeholder="Type" style="height: 40px;">
-                    </label>
-                    <label class="col-6 col-sm-6">
-                    Pages_Number:
-                        <input type="number" name="Pages_Number" class="form-control" value="<?php echo $collectionInfo->fetcPages_Number($collection_id); ?>" placeholder="Pages_Number" style="height: 40px;">
-                    </label>
-        
-                    <div class="col-12">
-                        <button class="btn btn-primary w-100 text-center" name="moreDetails" id="btn-login" type="submit" style="height: 40px;">edit collection</button>
+                                    <label class="col-12 col-sm-6">
+                                        Cover Image
+                                        <input type="file" name="Cover_Image" class="form-control" value="uploads/<?php echo $collectionInfo->fetchCover_Image($collection_id); ?>" placeholder="enter your Cover Image" style="height: 40px;">
+                                    </label>
+
+                                    <label class="col-12 col-sm-6">
+                                        Title:
+                                        <input type="text" name="Title" class="form-control" placeholder="Your Title" value="<?php echo $collectionInfo->fetchTitle($collection_id); ?>" style="height: 40px;">
+                                    </label>
+
+                                    <label class="col-12 col-sm-6">
+                                        Author_Name:
+                                        <input type="text" name="Author_Name" class="form-control" value="<?php echo $collectionInfo->fetchAuthor_Name($collection_id); ?>" placeholder="Your Author_Name" style="height: 40px;">
+                                    </label>
+
+                                    <label class="col-12 col-sm-6">
+                                        Edition Date:
+                                        <input type="date" name="Edition_Date" class="form-control" value="<?php echo $collectionInfo->fetchEdition_Date($collection_id); ?>" placeholder="Your Edition_Date" style="height: 40px;">
+                                    </label>
+
+                                    <label class="col-12 col-sm-6">
+                                        Buy Date
+                                        <input type="date" name="Buy_Date" class="form-control" value="<?php echo $collectionInfo->fetchBuy_Date($collection_id); ?>" placeholder="Buy_Date" style="height: 40px;">
+                                    </label>
+
+                                    <label class="col-6 col-sm-6">
+                                        state:
+                                        <input type="text" name="state" class="form-control" value="<?php echo $collectionInfo->fetchState($collection_id); ?>" placeholder="your Status" style="height: 40px;">
+                                    </label>
+                                    <label class="col-6 col-sm-6">
+                                        Type:
+                                        <input type="text" name="Type" class="form-control" value="<?php echo $collectionInfo->fetchType($collection_id); ?>" placeholder="Type" style="height: 40px;">
+                                    </label>
+                                    <label class="col-6 col-sm-6">
+                                        Pages_Number:
+                                        <input type="number" name="Pages_Number" class="form-control" value="<?php echo $collectionInfo->fetcPages_Number($collection_id); ?>" placeholder="Pages_Number" style="height: 40px;">
+                                    </label>
+                                    <div class="col-12">
+                                        <!-- button Update Collection -->
+                                        <button class="btn btn-primary w-100 text-center" name="moreDetails" id="btn-login" type="submit" style="height: 40px;">edit collection</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </form>
-                </div>
-                </div>
-            </div>
             </div>
         </section>
     </main>
+    <!--===================== start main update collection ==============-->
 
-<!-- foooter start -->
-<?php
-  include "footer.php";
-?>
-<!-- foooter end -->
+    <!-- foooter start -->
+    <?php
+    include "footer.php";
+    ?>
+    <!-- foooter end -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 27 mars 2023 à 05:48
+-- Généré le : mar. 28 mars 2023 à 01:01
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.1.12
 
@@ -42,7 +42,9 @@ CREATE TABLE `borrowings` (
 --
 
 INSERT INTO `borrowings` (`Borrowing_Code`, `Borrowing_Date`, `Borrowing_Return_Date`, `Status`, `Nickname`, `Collection_Code`, `Reservation_Code`) VALUES
-(45, '2023-03-27', '2023-04-11', 'Borrowed', 'hamido123', 3, 30);
+(45, '2023-03-27', '2023-04-11', 'Returned', 'hamido123', 3, 30),
+(46, '2023-03-28', '2023-04-12', 'Returned', 'hamido123', 6, 31),
+(48, '2023-03-28', '2023-04-12', 'Returned', 'hamido123', 65, 32);
 
 -- --------------------------------------------------------
 
@@ -100,10 +102,10 @@ CREATE TABLE `collection` (
 INSERT INTO `collection` (`Collection_Code`, `Title`, `Author_Name`, `Cover_Image`, `State`, `Edition_Date`, `Buy_Date`, `Status`, `Type`, `Pages_Number`) VALUES
 (1, 'To Kill a Mockingbird', 'Harper Lee', '../uploads/ToKillAMochingbird.jpg', 'New', '1960-07-11', '2021-03-26', 'Available', 'Books', 245),
 (2, 'Rich Dad Poor Dad', 'George Orwell', '../uploads/rich-dad-poor-dad-24.jpg', 'New', '1949-06-08', '2020-10-15', 'Available\r\n', 'Books\r\n', 234),
-(3, 'The Great Gatsby', 'F. Scott Fitzgerald', '../uploads/The Great Gatsby.jpg', 'New', '1925-04-10', '2022-01-02', 'booked_up', 'Books', 456),
+(3, 'The Great Gatsby', 'F. Scott Fitzgerald', '../uploads/The Great Gatsby.jpg', 'New', '1925-04-10', '2022-01-02', 'Available', 'Books', 456),
 (4, 'The Richest Man in Babylon', 'George Samuel Clason', '../uploads/download.jpg', 'New', '1926-01-28', '2022-02-14', 'Available', 'Books', 467),
 (5, 'Think and Grow Rich', 'Napoleon Hill', '../uploads/ThinkGrowRich.jpg', 'New', '1951-07-16', '2021-11-30', 'Available', 'Books', 876),
-(6, 'To the Lighthouse', 'Virginia Woolf', '../uploads/To The Lighthouse.jpg', 'New', '1927-05-05', '2022-03-01', 'booked_up', 'books', 986),
+(6, 'To the Lighthouse', 'Virginia Woolf', '../uploads/To The Lighthouse.jpg', 'New', '1927-05-05', '2022-03-01', 'Available', 'books', 986),
 (7, 'Global Finance Media', 'Anne Sweet', '6420d535dfbb8.jpg', 'New', '2013-01-02', '2023-02-28', 'Available', 'Magazine', 234),
 (8, 'To the Lighthouse', 'Virginia Woolf', '../uploads/To The Lighthouse.jpg', 'New', '1927-05-05', '2022-03-01', 'Available', 'Books\r\n', 986),
 (54, 'Rich Dad Poor Dad', 'George Orwell', '../uploads/rich-dad-poor-dad-24.jpg', 'Good', '1949-06-08', '2020-10-15', 'Available\r\n', 'Books', 234),
@@ -117,7 +119,7 @@ INSERT INTO `collection` (`Collection_Code`, `Title`, `Author_Name`, `Cover_Imag
 (62, 'The Great Gatsby', 'F. Scott Fitzgerald', '../uploads/The Great Gatsby.jpg', 'Excellent', '1925-04-10', '2022-01-02', 'Available', 'Books', 456),
 (63, 'Rich Dad Poor Dad', 'George Orwell', '../uploads/rich-dad-poor-dad-24.jpg', 'New', '1949-06-08', '2020-10-15', 'Available\r\n', 'Books\r\n', 234),
 (64, 'To the Lighthouse', 'Virginia Woolf', '../uploads/To The Lighthouse.jpg', 'New', '1927-05-05', '2022-03-01', 'Available', 'Books\r\n', 986),
-(65, 'Think and Grow Rich', 'Napoleon Hill', '../uploads/ThinkGrowRich.jpg', 'New', '1951-07-16', '2021-11-30', 'booked_up', 'Books', 876),
+(65, 'Think and Grow Rich', 'Napoleon Hill', '../uploads/ThinkGrowRich.jpg', 'New', '1951-07-16', '2021-11-30', 'Available', 'Books', 876),
 (66, 'Rich Dad Poor Dad', 'George Orwell', '../uploads/rich-dad-poor-dad-24.jpg', 'New', '1949-06-08', '2020-10-15', 'Available\r\n', 'Books\r\n', 234);
 
 -- --------------------------------------------------------
@@ -141,8 +143,8 @@ CREATE TABLE `reservation` (
 
 INSERT INTO `reservation` (`Reservation_Code`, `Reservation_Date`, `Reservation_Expiration_Date`, `Status`, `Collection_Code`, `Nickname`) VALUES
 (30, '2023-03-27', '2023-03-28 03:33:29', 'Borrowed', 3, 'hamido123'),
-(31, '2023-03-27', '2023-03-28 04:55:25', 'Reservation_Done', 6, 'hamido123'),
-(32, '2023-03-27', '2023-03-28 04:55:37', 'Reservation_Done', 65, 'hamido123');
+(31, '2023-03-27', '2023-03-28 04:55:25', 'Borrowed', 6, 'hamido123'),
+(32, '2023-03-27', '2023-03-28 04:55:37', 'Borrowed', 65, 'hamido123');
 
 --
 -- Index pour les tables déchargées
@@ -185,7 +187,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `borrowings`
 --
 ALTER TABLE `borrowings`
-  MODIFY `Borrowing_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `Borrowing_Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT pour la table `collection`

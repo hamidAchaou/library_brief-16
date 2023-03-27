@@ -26,8 +26,8 @@
         }
 
 
-        include_once "/xampp/htdocs/library_brief-16/classes/update-items.classes.php";
-        $UpdateItems = new UpdateItems();
+        include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
+        $UpdateItems = new AddItems();
         $UpdateItems->updateCollection($Title, $Author_Name, $img_des, $State, $Edition_Date, $Buy_Date, $Type, $Pages_Number, $collection_id);
 
         echo '

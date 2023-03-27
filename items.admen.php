@@ -4,9 +4,7 @@
     include_once "/xampp/htdocs/library_brief-16/classes/addItems.classes.php";
     ?>
 
-
-
-    <body class="">
+    <body>
 
         <!--================ navbar start ================== -->
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0 logSin position-fixed">
@@ -14,9 +12,6 @@
             <a href="index.html" class="navbar-brand p-0">
                 <h1 class="m-0"><i class="fa fa-user-tie me-2"></i>Read</h1>
             </a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="home.page.admin.php" class="nav-item nav-link">Home</a>
@@ -37,7 +32,7 @@
         </nav>
         <!--================ navbar end ================== -->
 
-        <!-- Blog Start -->
+        <!-- Start displaying display cards -->
         <div class="container-fluid py-5 wow fadeInUp bg-secondary" data-wow-delay="0.1s">
             <div class="container py-5 pt-5 mt-5">
                 <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -87,8 +82,8 @@
                                         </div>
                                     </div>
                                     <div class="d-flex mb-3 justify-content-evenly">
-                                        <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</button>
-                                        <button type="button" class="btn btn-info"><a href="moreDetails.php?idcollection=<?php echo $value['Collection_Code'] ?>">edite</a></button>                            
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItems?idCollection=<?php echo $value['Collection_Code'] ?>">Delete</button>
+                                        <button type="button" class="btn btn-info"><a href="updateItems.php?idcollection=<?php echo $value['Collection_Code'] ?>">edite</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -150,11 +145,10 @@
                 </div>
             </div>
         </div>
-                <!--============ end show cards items ==================-->
-                <!--===== start includ footer ========-->
-                <?php
-                include "footer.php";
-                ?>
-                <!--===== start includ footer ========-->
-   
-            </body>
+        <!--============ end show cards items ==================-->
+        <!--===== start includ footer ========-->
+        <?php
+        include "footer.php";
+        ?>
+        <!--===== start includ footer ========-->
+    </body>

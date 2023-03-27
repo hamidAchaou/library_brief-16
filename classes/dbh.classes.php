@@ -1,7 +1,7 @@
 <?php
 // create class connect databases library_managment_system
   class Dbh {
-
+    // methode connecte in databases
     protected function connect() {
       try {
         $username = "root";

@@ -25,7 +25,7 @@ include "../header.php";
         <div class="w-100 bg-secondary d-flex justify-content-center align-items-center" style="height: 100vh;">
             <div class="bg-light d-flex justify-content-center align-items-center flex-wrap" style="width: 50%; height: 200px;">
                 <h1 class="w-100 d-flex justify-content-center">this reservation is confirme</h1><br>
-                <h2><i class="fa-sharp fa-solid fa-check w-100"></i></h2>
+                <h2 class="w-100 justify-content-center"><i class="fa-sharp fa-solid fa-check w-100"></i></h2>
                 <a href="../confirme.rservation.php" class="btn btn-info d-flex justify-content-center w-75 animated slideInLeft">OK</a>
             </div>
         </div>

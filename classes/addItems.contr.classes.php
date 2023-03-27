@@ -65,6 +65,7 @@
         return false;
         }
     }
+
     // cheack AuthorName
     private function invalidAuthorName() {
         if (preg_match("/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/", $this->Author_Name)) {
@@ -73,5 +74,5 @@
         return false;
         }
     }
-  }
+  } // end addItemsContr
 ?>
